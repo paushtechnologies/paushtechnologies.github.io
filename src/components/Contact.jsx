@@ -92,7 +92,7 @@ export default function ContactSection() {
           textAlign: "center", 
           mb: { xs: 1, md: 2 }, 
           color: "text.secondary",
-          fontSize: { xs: "1rem", md: "1.25rem" } }}
+          fontSize: { xs: "0.9rem", md: "1.25rem" } }}
         >
           Have an idea or project in mind? Fill the form below and we’ll get
           back to you.

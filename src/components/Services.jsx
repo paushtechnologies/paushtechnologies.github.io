@@ -107,7 +107,7 @@ export default function ServicesSection() {
               maxWidth: 820,
               mx: "auto",
               fontWeight: 400,
-              fontSize: { xs: "0.75rem", md: "1.25rem" },
+              fontSize: { xs: "0.65rem", md: "1.25rem" },
             }}
           >
             We build world-class web, mobile, and cloud solutions that empower
@@ -117,7 +117,7 @@ export default function ServicesSection() {
 
         <Grid
           container
-          spacing={4}
+          spacing={{ xs: 2, md: 4 }}
           alignItems="stretch"
           justifyContent="center"
         >
@@ -127,7 +127,7 @@ export default function ServicesSection() {
               <Grid item xs={4} sm={6} md={4} lg={3} key={service.id}>
                 <Card
                   sx={{
-                    width: {xs: '150px' , sm: '180px', md: '100%'},
+                    width: { xs: "130px", sm: "180px", md: "100%" },
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "center",
@@ -143,6 +143,12 @@ export default function ServicesSection() {
                     boxShadow: "0 8px 20px rgba(0,0,0,0.08)",
                     transition: "all 0.6s ease",
                     // marginBottom: 1,
+
+                    // ✅ Prevent text selection on mobile
+                    userSelect: "none",
+                    WebkitUserSelect: "none",
+                    MozUserSelect: "none",
+                    MsUserSelect: "none",
 
                     "&:hover": {
                       background: `linear-gradient(135deg, ${service.color}40, ${service.color})`,
@@ -250,7 +256,7 @@ export default function ServicesSection() {
                         sx={{
                           color: "inherit",
                           maxWidth: 360,
-                          fontSize: { xs: "0.85rem", md: "1.05rem" }, // slightly larger on desktop
+                          fontSize: { xs: "0.75rem", md: "1.05rem" }, // slightly larger on desktop
                           lineHeight: 1.6,
                           fontWeight: 500,
                         }}

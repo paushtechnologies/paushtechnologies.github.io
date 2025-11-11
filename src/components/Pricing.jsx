@@ -62,7 +62,7 @@ export default function PricingSection() {
           </Typography>
         </Box>
 
-        <Grid container spacing={4} justifyContent="center">
+        <Grid container spacing={{ xs: 2, md: 4 }} justifyContent="center">
           {PRICING_PLANS.map((plan, index) => (
             <Grid item xs={12} md={4} key={plan.name}>
               <Zoom in timeout={500 + index * 200}>
@@ -87,7 +87,7 @@ export default function PricingSection() {
                       color="success"
                       sx={{
                         position: "absolute",
-                        top: -7,
+                        top: -10,
                         left: "50%",
                         transform: "translateX(-50%)",
                         fontWeight: 600,

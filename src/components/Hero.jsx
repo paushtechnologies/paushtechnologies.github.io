@@ -31,7 +31,7 @@ export default function Hero() {
     <Box
       id="home"
       sx={{
-        pt: 12,
+        pt: { xs: 8, md: 12 },
         pb: { xs: 2, md: 6 },
         background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
         color: "white",
@@ -53,7 +53,7 @@ export default function Hero() {
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   animation: "slideInLeft 1s ease-out",
-                  fontSize: { xs: "2.35rem", md: "3.75rem" },
+                  fontSize: { xs: "2rem", md: "3.75rem" },
                   lineHeight: { xs: 1.2, md: 1.1 },
                 }}
               >
@@ -73,11 +73,14 @@ export default function Hero() {
                 <span
                   style={{
                     background:
-                      "linear-gradient(45deg, rgb(249, 5, 127), rgb(21, 35, 230))",
+                      // "linear-gradient(45deg, rgb(249, 5, 127), rgb(21, 35, 230))",
+                      "linear-gradient(45deg, #FFE600, #FF4BC1)",
                     backgroundClip: "text",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                     animation: "pulse 2s infinite",
+                    // textShadow: "0 1px 6px rgba(255,255,255,0.35)",
+                    //  WebkitTextStroke: "0.5px rgba(255,255,255,0.75)",
                   }}
                 >
                   Excellence
@@ -90,7 +93,7 @@ export default function Hero() {
                   mb: { xs: 3, md: 6 },
                   opacity: 0.9,
                   animation: "slideInLeft 1s ease-out 0.4s both",
-                  fontSize: { xs: "1.35rem", md: "1.5rem" },
+                  fontSize: { xs: "1.25rem", md: "1.5rem" },
                 }}
               >
                 Transforming businesses through cutting-edge technologies
@@ -99,7 +102,7 @@ export default function Hero() {
               <Box
                 sx={{
                   display: "flex",
-                  gap: 2,
+                  gap: { xs: 1, md: 2},
                   flexWrap: "wrap",
                   animation: "slideInLeft 1s ease-out 0.6s both",
                 }}
@@ -113,9 +116,9 @@ export default function Hero() {
                     overflow: "hidden",
                     background: "linear-gradient(45deg, #484be2ff, #ec4899)",
                     borderRadius: "25px",
-                    px: { xs: 2.5, sm: 3.5, md: 4 },
-                    py: { xs: 1, sm: 1.2, md: 1.5 },
-                    fontSize: { xs: "1rem", sm: "1rem", md: "1.1rem" },
+                    px: { xs: 1.5, sm: 3, md: 4 },
+                    py: { xs: 1.5, sm: 1, md: 1.5 },
+                    fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" },
                     // px: 4,
                     // py: 1.5,
                     // fontSize: "1.1rem",
@@ -188,7 +191,7 @@ export default function Hero() {
                 >
                   <Typography
                     variant="h6"
-                    sx={{ mb: 3, color: "text.primary", fontWeight: 600 }}
+                    sx={{ mb: { xs: 1, sm: 2, md: 3 }, color: "text.primary", fontWeight: 600 }}
                   >
                     Quick Facts
                   </Typography>
@@ -233,7 +236,15 @@ export default function Hero() {
                           </Typography>
                           <Typography
                             variant="body2"
-                            sx={{ color: "text.secondary", fontWeight: 500 }}
+                            sx={{ 
+                            color: "text.secondary", 
+                            fontWeight: 500,
+                            fontSize: {
+                                xs: "0.75rem",
+                                sm: "0.75rem",
+                                md: "0.80rem",
+                              }, 
+                            }}
                           >
                             {stat.label}
                           </Typography>
@@ -290,7 +301,7 @@ export default function Hero() {
       <Box
         sx={{
           position: "absolute",
-          top: { xs: "68%", md: "32%" },
+          top: { xs: "70%", md: "32%" },
           right: { xs: "5%", md: "6%" },
           mt: { xs: 3, md: 0 },
           background: "rgba(255, 255, 255, 0.2)",
@@ -317,6 +328,11 @@ export default function Hero() {
             backgroundClip: "text",
             WebkitBackgroundClip: "text",
             letterSpacing: "0.5px",
+            fontSize: {
+              xs: "1rem",
+              sm: "1.25rem",
+              md: "1.50rem",
+            },
           }}
         >
           You think it, we ink it.

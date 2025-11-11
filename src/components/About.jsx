@@ -6,7 +6,7 @@ export default function AboutSection() {
   return (
     <Box sx={{ py: 8, background: "#f8fafc" }}>
       <Container maxWidth="lg">
-        <Grid container spacing={6} alignItems="center">
+        <Grid container spacing={{ xs: 2, md: 6 }} alignItems="center">
           <Grid item xs={12} md={6}>
             <Typography
               variant="h4"

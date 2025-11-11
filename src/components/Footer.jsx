@@ -41,13 +41,13 @@ export default function Footer() {
       sx={{
         background: "linear-gradient(135deg, #1f2937 0%, #374151 100%)",
         color: "white",
-        py: 6,
+        py: { xs: 4, md: 6 },
       }}
     >
       <Container maxWidth="lg">
         <Grid
           container
-          spacing={4}
+          spacing={{ xs: 2, md: 4 }}
           alignItems="flex-start"
           justifyContent="space-between"
         >
@@ -56,7 +56,7 @@ export default function Footer() {
             <Typography
               variant="h4"
               sx={{
-                mb: {xs: 1, md: 2},
+                mb: { xs: 1, md: 2 },
                 fontWeight: 700,
                 display: "inline-block",
                 position: "relative",
@@ -65,7 +65,7 @@ export default function Footer() {
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 overflow: "hidden",
-                fontSize: { xs: "1.5rem", md: "2.05rem" },
+                fontSize: { xs: "1.65rem", md: "2.05rem" },
                 "&::before": {
                   content: '""',
                   position: "absolute",
@@ -87,27 +87,58 @@ export default function Footer() {
             </Typography>
 
             <Typography variant="body2" sx={{ mb: 2, opacity: 0.8 }}>
-              Pioneering the future of technology with AI, blockchain, and cloud
-              solutions. We transform businesses through innovative digital
+               We transform businesses through innovative digital
               ecosystems that drive unprecedented growth.
             </Typography>
 
+            {/* Phone & Email with tap-to-copy */}
             <Typography
               variant="body2"
               sx={{
                 opacity: 0.8,
                 display: "flex",
                 alignItems: "center",
-                gap: { xs: 0.5, md: 1 },
+                gap: { xs: 0.2, md: 1 },
+                fontSize: { xs: "0.80rem", md: "0.90rem" },
+                cursor: "pointer",
+                "& span:hover": { opacity: 1 },
               }}
             >
-              📞 +91 8076864264 | ✉️ paushtechnologies@gmail.com
+              📞{" "}
+              <span
+                onClick={() => {
+                  navigator.clipboard.writeText("+918076864264");
+                  setMessage("Phone number copied");
+                  setSuccess(true);
+                  setTimeout(() => setMessage(""), 3000);
+                }}
+              >
+                +91 8076864264
+              </span>
+              {" | "} ✉️{" "}
+              <span
+                onClick={() => {
+                  navigator.clipboard.writeText("paushtechnologies@gmail.com");
+                  setMessage("Email copied");
+                  setSuccess(true);
+                  setTimeout(() => setMessage(""), 3000);
+                }}
+              >
+                paushtechnologies@gmail.com
+              </span>
             </Typography>
           </Grid>
 
           {/* Navigation */}
           <Grid item xs={12} md={2}>
-            <Typography variant="h6" sx={{ mb: 2, fontWeight: 600 }}>
+            <Typography
+              variant="h6"
+              sx={{
+                mb: { xs: 1, md: 2 },
+                fontWeight: 600,
+                fontSize: { xs: "0.85rem", md: "1.25rem" },
+              }}
+            >
               🚀 Innovation Hub
             </Typography>
             <List sx={{ p: 0 }}>
@@ -136,7 +167,14 @@ export default function Footer() {
 
           {/* Resources */}
           <Grid item xs={12} md={3}>
-            <Typography variant="h6" sx={{ mb: 2, fontWeight: 600 }}>
+            <Typography
+              variant="h6"
+              sx={{
+                mb: { xs: 1, md: 2 },
+                fontWeight: 600,
+                fontSize: { xs: "0.85rem", md: "1.25rem" },
+              }}
+            >
               🔗 Resources
             </Typography>
             <List sx={{ p: 0 }}>
@@ -225,15 +263,18 @@ export default function Footer() {
         <Box
           sx={{
             borderTop: "1px solid rgba(255, 255, 255, 0.1)",
-            mt: {xs: 2, md: 4},
-            pt: {xs: 2, md: 4},
+            mt: { xs: 2, md: 4 },
+            pt: { xs: 2, md: 4 },
             textAlign: "center",
           }}
         >
-          <Typography variant="body2" sx={{ 
-            opacity: 0.8,
-            fontSize: { xs: "0.75rem", md: "0.90rem" } 
-            }}>
+          <Typography
+            variant="body2"
+            sx={{
+              opacity: 0.8,
+              fontSize: { xs: "0.75rem", md: "0.90rem" },
+            }}
+          >
             © 2024 {COMPANY_NAME}. All Rights Reserved.
           </Typography>
         </Box>
