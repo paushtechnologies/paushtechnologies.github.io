@@ -23,7 +23,7 @@ export const PRICING_PLANS = [
   {
     name: "Enterprise Solution",
     originalPrice: "₹ 35,000",
-    price: "₹ 39,999",
+    price: "₹ 49,999",
     gst: "₹ 7,200",
     features: [
       "Advanced Web Platform",
@@ -46,7 +46,7 @@ export const PRICING_PLANS = [
   {
     name: "Digital Transformation",
     originalPrice: "₹ 75,000",
-    price: "₹ 69,999",
+    price: "₹ 89,999",
     gst: "₹ 12,600",
     features: [
       "Complete Digital Ecosystem",

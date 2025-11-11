@@ -71,17 +71,28 @@ export default function ContactSection() {
   };
 
   return (
-    <Box sx={{ py: 10, background: "linear-gradient(135deg,#f9fafb,#eef2ff)" }}>
+    <Box sx={{ 
+      py: { xs: 4, md: 8 }, 
+      background: "linear-gradient(135deg,#f9fafb,#eef2ff)" 
+      }}>
       <Container maxWidth="lg">
         <Typography
           variant="h3"
-          sx={{ textAlign: "center", fontWeight: 700, mb: 1 }}
+          sx={{ 
+          textAlign: "center", 
+          fontWeight: 700, 
+          mb: { xs: 0.5, md: 1 },
+          fontSize: { xs: "2rem", md: "3rem" } }}
         >
           Contact Us
         </Typography>
         <Typography
           variant="h6"
-          sx={{ textAlign: "center", mb: 2, color: "text.secondary" }}
+          sx={{ 
+          textAlign: "center", 
+          mb: { xs: 1, md: 2 }, 
+          color: "text.secondary",
+          fontSize: { xs: "1rem", md: "1.25rem" } }}
         >
           Have an idea or project in mind? Fill the form below and we’ll get
           back to you.
@@ -101,15 +112,16 @@ export default function ContactSection() {
             xs={12}
             md={6}
             sx={{
-              p: { xs: 4, md: 2 },
+              p: { xs: 2, md: 2 },
               display: "flex",
               justifyContent: "center",
+              alignItems: "center",
             }}
           >
             <Box
               component="form"
               onSubmit={handleSubmit}
-              sx={{ width: "100%", maxWidth: 450 }}
+              sx={{ width: "100%", maxWidth: 520 }}
             >
               <TextField
                 fullWidth
@@ -151,12 +163,12 @@ export default function ContactSection() {
               />
 
               {/* reCAPTCHA */}
-              {/* <Box sx={{ mt: 2, display: "flex", justifyContent: "center" }}> */}
+              <Box sx={{ mt: 2, display: "flex", justifyContent: "left" }}>
                 <ReCAPTCHA
                   sitekey="6LfF8_krAAAAAH4la8Gxl_HwY-mkJjhNa5UlkvWB"
                   onChange={(token) => setRecaptchaToken(token)}
                 />
-              {/* </Box> */}
+              </Box>
 
               <Button
                 type="submit"
@@ -178,18 +190,32 @@ export default function ContactSection() {
                 Send Message
               </Button>
             </Box>
+          </Grid>
 
-            {/* Right: Image (same as your original layout) */}
+          {/* Right: Image (separate grid item for better stacking on mobile) */}
+          <Grid
+            item
+            xs={12}
+            md={6}
+            sx={{
+              display: "flex",
+              alignItems: "stretch",
+              justifyContent: "center",
+              p: { xs: 1, md: 2 },
+              // background: { xs: "transparent", md: "linear-gradient(135deg,#fff,#eef2ff)" },
+            }}
+          >
             <Box
               component="img"
               src={customercare}
               alt="Contact Us"
-              ml="50px"
               sx={{
-                width: "50%",
-                height: "100%",
+                width: { xs: "100%", md: "100%" },
+                maxWidth: 520,
+                height: { xs: "auto", md: "100%" },
                 objectFit: "cover",
-                borderRadius: "30px",
+                borderRadius: { xs: "20px", md: "30px" },
+                display: "block",
               }}
             />
           </Grid>

@@ -14,6 +14,7 @@ export default function AboutSection() {
                 mb: 3,
                 color: "text.primary",
                 animation: "fadeInUp 1s ease-out",
+                fontSize: { xs: "1.5rem", md: "2.25rem" }
               }}
             >
               Welcome to the Future with {COMPANY_NAME}
@@ -24,6 +25,7 @@ export default function AboutSection() {
                 mb: 3,
                 color: "text.secondary",
                 animation: "fadeInUp 1s ease-out 0.2s both",
+                fontSize: { xs: "0.85rem", md: "1.25rem" }
               }}
             >
               We're not just a technology company—we're architects of tomorrow's
@@ -36,6 +38,7 @@ export default function AboutSection() {
                 mb: 3,
                 color: "text.secondary",
                 animation: "fadeInUp 1s ease-out 0.4s both",
+                fontSize: { xs: "0.75rem", md: "1rem" }
               }}
             >
               Our mission is to bridge the gap between cutting-edge technology
@@ -48,6 +51,7 @@ export default function AboutSection() {
                 mb: 4,
                 color: "text.secondary",
                 animation: "fadeInUp 1s ease-out 0.6s both",
+                fontSize: { xs: "0.75rem", md: "1rem" }
               }}
             >
               From AI-powered automation to blockchain innovations, we don't
@@ -60,9 +64,10 @@ export default function AboutSection() {
               sx={{
                 background: "linear-gradient(45deg, #6366f1, #ec4899)",
                 borderRadius: "25px",
-                px: 4,
+                px: { xs: 2, md: 4 },
                 py: 1.5,
                 fontWeight: 600,
+                fontSize: { xs: "0.75rem", md: "1rem" },
                 animation: "fadeInUp 1s ease-out 0.8s both",
                 "&:hover": {
                   transform: "translateY(-3px) scale(1.05)",
@@ -82,8 +87,8 @@ export default function AboutSection() {
             >
               <Box
                 sx={{
-                  width: "100%",
-                  height: 400,
+                  width: "105%",
+                  height: { xs: 200, md: 400 },
                   background:
                     "linear-gradient(135deg, #6366f1 0%, #ec4899 50%, #10b981 100%)",
                   borderRadius: 3,
@@ -107,13 +112,26 @@ export default function AboutSection() {
                 }}
               >
                 <Box sx={{ textAlign: "center", zIndex: 1 }}>
-                  <Typography variant="h4" sx={{ fontWeight: 700, mb: 2 }}>
+                  <Typography variant="h4" 
+                  sx={{ 
+                    fontWeight: 700, 
+                    mb: 2,
+                    fontSize: { xs: "1.25rem", md: "2.25rem" }
+                  }}>
                     🧠 AI-Powered
                   </Typography>
-                  <Typography variant="h4" sx={{ fontWeight: 700, mb: 2 }}>
+                  <Typography variant="h4" 
+                  sx={{ 
+                    fontWeight: 700, 
+                    mb: 2,
+                    fontSize: { xs: "1.25rem", md: "2.25rem" }
+                  }}>
                     🔗 Blockchain-Enabled
                   </Typography>
-                  <Typography variant="h4" sx={{ fontWeight: 700 }}>
+                  <Typography variant="h4" 
+                  sx={{ 
+                    fontWeight: 700,
+                    fontSize: { xs: "1.25rem", md: "2.25rem" } }}>
                     ☁️ Cloud-Native
                   </Typography>
                 </Box>

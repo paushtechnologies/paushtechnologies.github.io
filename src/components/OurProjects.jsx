@@ -277,8 +277,8 @@ export default function ProjectsCarousel() {
                     <Box
                       sx={{
                         position: "absolute",
-                        top: 10,
-                        left: 10,
+                        top: 20,
+                        left: 20,
                         bgcolor: "rgba(255,255,255,0.9)",
                         px: 1.2,
                         py: "4px",
@@ -297,7 +297,7 @@ export default function ProjectsCarousel() {
                         left: 0,
                         right: 0,
                         bottom: 0,
-                        p: 1.5,
+                        p: { xs: 3.5, md: 2 },
                         background: "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%)",
                         color: "white",
                       }}

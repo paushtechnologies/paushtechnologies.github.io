@@ -12,7 +12,7 @@ import CurrencyBitcoinIcon from "@mui/icons-material/CurrencyBitcoin";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 
 // ✅ Export constants
-export const COMPANY_NAME = "PAUSH TECHNOLOGIES";
+export const COMPANY_NAME = "PAUSH Technologies";
 // Production-ready direct Google Apps Script URL
 export const GOOGLE_SCRIPT_URL =
   "https://script.google.com/macros/s/AKfycbyYnbbbJeNKjDJr0RasnMZgR3qPtDoKqgdN9JXwD32Iont0P4DJ9FaevIYgXvjhMgN-/exec";

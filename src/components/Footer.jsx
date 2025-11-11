@@ -56,7 +56,7 @@ export default function Footer() {
             <Typography
               variant="h4"
               sx={{
-                mb: 2,
+                mb: {xs: 1, md: 2},
                 fontWeight: 700,
                 display: "inline-block",
                 position: "relative",
@@ -65,6 +65,7 @@ export default function Footer() {
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 overflow: "hidden",
+                fontSize: { xs: "1.5rem", md: "2.05rem" },
                 "&::before": {
                   content: '""',
                   position: "absolute",
@@ -97,7 +98,7 @@ export default function Footer() {
                 opacity: 0.8,
                 display: "flex",
                 alignItems: "center",
-                gap: 1,
+                gap: { xs: 0.5, md: 1 },
               }}
             >
               📞 +91 8076864264 | ✉️ paushtechnologies@gmail.com
@@ -224,14 +225,16 @@ export default function Footer() {
         <Box
           sx={{
             borderTop: "1px solid rgba(255, 255, 255, 0.1)",
-            mt: 4,
-            pt: 4,
+            mt: {xs: 2, md: 4},
+            pt: {xs: 2, md: 4},
             textAlign: "center",
           }}
         >
-          <Typography variant="body2" sx={{ opacity: 0.8 }}>
-            © 2024 {COMPANY_NAME}. All Rights Reserved. | Crafting Tomorrow's
-            Technology Today
+          <Typography variant="body2" sx={{ 
+            opacity: 0.8,
+            fontSize: { xs: "0.75rem", md: "0.90rem" } 
+            }}>
+            © 2024 {COMPANY_NAME}. All Rights Reserved.
           </Typography>
         </Box>
       </Container>

@@ -95,7 +95,7 @@ export default function ServicesSection() {
             sx={{
               // fontWeight: 700,
               mb: 1,
-              // fontSize: { xs: "1.8rem", md: "2.5rem" },
+              fontSize: { xs: "2rem", md: "3rem" },
             }}
           >
             Our Services
@@ -107,6 +107,7 @@ export default function ServicesSection() {
               maxWidth: 820,
               mx: "auto",
               fontWeight: 400,
+              fontSize: { xs: "0.75rem", md: "1.25rem" },
             }}
           >
             We build world-class web, mobile, and cloud solutions that empower
@@ -123,16 +124,16 @@ export default function ServicesSection() {
           {SERVICES.map((service) => {
             const Icon = service.icon;
             return (
-              <Grid item xs={12} sm={6} md={4} lg={3} key={service.id}>
+              <Grid item xs={4} sm={6} md={4} lg={3} key={service.id}>
                 <Card
                   sx={{
-                    // width: 250,
+                    width: {xs: '150px' , sm: '180px', md: '100%'},
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "center",
                     alignItems: "center",
                     position: "relative",
-                    height: 300,
+                    height: { xs: 200, md: 300 },
                     borderRadius: 4,
                     overflow: "hidden",
                     boxSizing: "border-box",
@@ -172,7 +173,7 @@ export default function ServicesSection() {
                       transform: "translateY(0)",
                     },
                   }}
-                >  
+                >
                   <CardContent
                     sx={{
                       position: "relative",
@@ -183,8 +184,9 @@ export default function ServicesSection() {
                       alignItems: "center",
                       justifyContent: "center",
                       textAlign: "center",
-                      p: 4,
+                      p: { xs: 1, sm: 3, md: 4 },
                       transition: "all 0.6s ease",
+                      // overflowY: "auto",
                     }}
                   >
                     {/* Icon */}
@@ -215,6 +217,12 @@ export default function ServicesSection() {
                         fontWeight: 700,
                         mb: 1,
                         transition: "all 0.6s ease",
+                        fontSize: {
+                          xs: "1.00rem", // small on phones
+                          sm: "1.05rem", // slightly bigger on small tablets
+                          md: "1.15rem", // normal desktop size
+                          lg: "1.25rem", // larger on large monitors
+                        },
                       }}
                     >
                       {service.title}
@@ -229,7 +237,7 @@ export default function ServicesSection() {
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
-                        px: 4,
+                        px: { xs: 2, md: 4 },
                         textAlign: "center",
                         zIndex: 3,
                         opacity: 0,
@@ -242,7 +250,7 @@ export default function ServicesSection() {
                         sx={{
                           color: "inherit",
                           maxWidth: 360,
-                          fontSize: { xs: "0.98rem", md: "1.05rem" }, // slightly larger on desktop
+                          fontSize: { xs: "0.85rem", md: "1.05rem" }, // slightly larger on desktop
                           lineHeight: 1.6,
                           fontWeight: 500,
                         }}

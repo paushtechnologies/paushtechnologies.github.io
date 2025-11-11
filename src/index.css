@@ -572,3 +572,43 @@ html {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Mobile-friendly tweaks (scoped to small viewports so desktop remains unchanged) */
+@media (max-width: 768px) {
+  /* reduce root padding to avoid horizontal overflow on phones */
+  #root {
+    padding: 1rem;
+  }
+
+  /* ensure images are fluid and don't overflow their containers */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* slightly reduce base font size on very small screens for better fit */
+  html, body {
+    font-size: 15px;
+  }
+
+  /* tighten section vertical padding on small screens without changing desktop */
+  .MuiContainer-root, .container, .section {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  /* prevent long unbroken words from overflowing */
+  .MuiTypography-root {
+    word-break: break-word;
+  }
+}
+
+/* Tighter typography on narrow phones */
+@media (max-width: 420px) {
+  h1 { font-size: 1.4rem; }
+  h2 { font-size: 1.25rem; }
+  h3 { font-size: 1.05rem; }
+  h4 { font-size: 1rem; }
+  p, span, a, div.MuiTypography-root { font-size: 0.95rem; }
+}

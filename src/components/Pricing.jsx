@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Container,
@@ -13,21 +13,48 @@ import {
   ListItemText,
   Button,
   Zoom,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import { PRICING_PLANS } from "../data/pricing";
 
 export default function PricingSection() {
+  const [copyAlert, setCopyAlert] = useState(false);
+
+  const copyNumber = () => {
+    navigator.clipboard.writeText("+91 8076864264");
+    setCopyAlert(true);
+  };
+
   return (
-    <Box sx={{ py: 8, background: "white" }}>
+    <Box
+      sx={{
+        py: { xs: 4, md: 8 },
+        background: "white",
+      }}
+    >
       <Container maxWidth="lg">
         <Box sx={{ textAlign: "center", mb: 6 }}>
-          <Typography variant="h3" sx={{ mb: 2, color: "text.primary" }}>
+          <Typography
+            variant="h3"
+            sx={{
+              mb: 2,
+              color: "text.primary",
+              fontSize: { xs: "2rem", md: "3rem" },
+            }}
+          >
             Plans & Pricing
           </Typography>
+
           <Typography
             variant="h6"
-            sx={{ color: "text.secondary", maxWidth: 800, mx: "auto" }}
+            sx={{
+              color: "text.secondary",
+              maxWidth: 800,
+              mx: "auto",
+              fontSize: { xs: "0.85rem", md: "1.2rem" },
+            }}
           >
             We are among India's best web solution companies committed to
             offering full ROI-driven customized web services at affordable
@@ -60,7 +87,7 @@ export default function PricingSection() {
                       color="success"
                       sx={{
                         position: "absolute",
-                        top: -10,
+                        top: -7,
                         left: "50%",
                         transform: "translateX(-50%)",
                         fontWeight: 600,
@@ -68,21 +95,26 @@ export default function PricingSection() {
                     />
                   )}
 
-                  <CardContent sx={{ p: 4 }}>
+                  <CardContent sx={{ p: { xs: 2, md: 4 } }}>
                     <Typography
                       variant="h5"
-                      sx={{ mb: 2, fontWeight: 600, textAlign: "center" }}
+                      sx={{
+                        mb: { xs: 1, md: 2 },
+                        fontWeight: 600,
+                        textAlign: "center",
+                      }}
                     >
                       {plan.name}
                     </Typography>
 
-                    <Box sx={{ textAlign: "center", mb: 3 }}>
+                    <Box sx={{ textAlign: "center", mb: { xs: 1, md: 3 } }}>
                       <Typography
                         variant="h4"
                         sx={{ fontWeight: 700, color: "primary.main" }}
                       >
                         {plan.price}
                       </Typography>
+
                       <Typography
                         variant="body2"
                         sx={{ color: "text.secondary" }}
@@ -91,7 +123,7 @@ export default function PricingSection() {
                       </Typography>
                     </Box>
 
-                    <List sx={{ mb: 3 }}>
+                    <List sx={{ mb: { xs: 1, md: 3 } }}>
                       {plan.features.map((feature, featureIndex) => (
                         <ListItem key={featureIndex} sx={{ px: 0, py: 0.5 }}>
                           <ListItemIcon sx={{ minWidth: 30 }}>
@@ -99,6 +131,7 @@ export default function PricingSection() {
                               sx={{ color: "success.main", fontSize: 20 }}
                             />
                           </ListItemIcon>
+
                           <ListItemText
                             primary={feature}
                             primaryTypographyProps={{ fontSize: "0.9rem" }}
@@ -107,13 +140,15 @@ export default function PricingSection() {
                       ))}
                     </List>
 
+                    {/* ✅ Updated Button with copy functionality */}
                     <Button
                       fullWidth
                       variant={plan.popular ? "contained" : "outlined"}
                       size="large"
+                      onClick={copyNumber}
                       sx={{
                         borderRadius: 2,
-                        py: 1.5,
+                        py: { xs: 0.75, md: 1.5 },
                         fontWeight: 600,
                         background: plan.popular
                           ? "linear-gradient(45deg, #10b981, #059669)"
@@ -128,6 +163,28 @@ export default function PricingSection() {
             </Grid>
           ))}
         </Grid>
+
+        {/* ✅ Snackbar for “Phone number copied!” */}
+        <Snackbar
+          open={copyAlert}
+          autoHideDuration={2000}
+          onClose={() => setCopyAlert(false)}
+          anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        >
+          <Alert
+            onClose={() => setCopyAlert(false)}
+            severity="success"
+            variant="filled"
+            sx={{
+              width: "100%",
+              backgroundColor: "#d1fae5", // ✅ Pastel green
+              color: "#065f46", // darker green text for contrast
+              boxShadow: "0 4px 20px rgba(0,0,0,0.5)",
+            }}
+          >
+            Phone number copied!
+          </Alert>
+        </Snackbar>
       </Container>
     </Box>
   );

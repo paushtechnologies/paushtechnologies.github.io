@@ -15,10 +15,18 @@ export default function TestimonialsSection() {
     <Box sx={{ py: 8, background: "white" }}>
       <Container maxWidth="lg">
         <Box sx={{ textAlign: "center", mb: 6 }}>
-          <Typography variant="h3" sx={{ mb: 2, color: "text.primary" }}>
+          <Typography 
+          variant="h3" 
+          sx={{ mb: 2, color: "text.primary",
+          fontSize: { xs: "2rem", md: "3rem" }
+          }}>
             What Our Clients Say
           </Typography>
-          <Typography variant="h6" sx={{ color: "text.secondary" }}>
+          <Typography 
+          variant="h6" 
+          sx={{ color: "text.secondary",
+            fontSize: { xs: "0.85rem", md: "1.25rem" }
+           }}>
             Don't just take our word for it - hear from our satisfied clients
           </Typography>
         </Box>
@@ -38,17 +46,28 @@ export default function TestimonialsSection() {
                   </Box>
                   <Typography
                     variant="body1"
-                    sx={{ mb: 3, fontStyle: "italic" }}
+                    sx={{ 
+                    mb: 3, 
+                    fontStyle: "italic",
+                    fontSize: { xs: "0.85rem", md: "1rem" }
+                   }}
                   >
                     "{testimonial.quote}"
                   </Typography>
                   <Box>
-                    <Typography variant="h6" sx={{ fontWeight: 600 }}>
+                    <Typography variant="h6" 
+                    sx={{ 
+                      fontWeight: 600,
+                      fontSize: { xs: "1rem", md: "1.25rem" }
+                    }}>
                       {testimonial.name}
                     </Typography>
                     <Typography
                       variant="body2"
-                      sx={{ color: "text.secondary" }}
+                      sx={{ 
+                        color: "text.secondary",
+                        fontSize: { xs: "0.85rem", md: "1rem" }
+                      }}
                     >
                       {testimonial.company}
                     </Typography>
