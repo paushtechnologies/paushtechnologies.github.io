@@ -136,7 +136,7 @@ export default function Footer() {
               sx={{
                 mb: { xs: 1, md: 2 },
                 fontWeight: 600,
-                fontSize: { xs: "0.85rem", md: "1.25rem" },
+                fontSize: { xs: "1rem", md: "1.25rem" },
               }}
             >
               🚀 Innovation Hub
@@ -172,7 +172,7 @@ export default function Footer() {
               sx={{
                 mb: { xs: 1, md: 2 },
                 fontWeight: 600,
-                fontSize: { xs: "0.85rem", md: "1.25rem" },
+                fontSize: { xs: "1rem", md: "1.25rem" },
               }}
             >
               🔗 Resources

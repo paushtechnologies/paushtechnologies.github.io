@@ -94,7 +94,7 @@ export default function ServicesSection() {
             variant="h3"
             sx={{
               // fontWeight: 700,
-              mb: 1,
+              mb: { xs: 0.5, md: 1 },
               fontSize: { xs: "2rem", md: "3rem" },
             }}
           >
@@ -107,7 +107,7 @@ export default function ServicesSection() {
               maxWidth: 820,
               mx: "auto",
               fontWeight: 400,
-              fontSize: { xs: "0.65rem", md: "1.25rem" },
+              fontSize: { xs: "0.85rem", md: "1.25rem" },
             }}
           >
             We build world-class web, mobile, and cloud solutions that empower

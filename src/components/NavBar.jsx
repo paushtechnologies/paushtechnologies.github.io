@@ -68,7 +68,12 @@ export default function NavBar() {
           },
         }}
       >
-        <Container maxWidth="xl" sx={{ transition: "all 0.4s ease" }}>
+        <Container 
+          maxWidth="xl" 
+          sx={{ 
+            px: { xs: 0, md: 4 },
+            transition: "all 0.4s ease" 
+            }}>
           <Toolbar sx={{ justifyContent: "space-between" }}>
             {/* Logo Section */}
             <Box

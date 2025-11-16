@@ -39,7 +39,7 @@ export default function PricingSection() {
           <Typography
             variant="h3"
             sx={{
-              mb: 2,
+              mb: { xs: 1, md: 2 },
               color: "text.primary",
               fontSize: { xs: "2rem", md: "3rem" },
             }}
@@ -62,7 +62,8 @@ export default function PricingSection() {
           </Typography>
         </Box>
 
-        <Grid container spacing={{ xs: 2, md: 4 }} justifyContent="center">
+        <Grid 
+        container spacing={{ xs: 2, md: 4 }} justifyContent="center">
           {PRICING_PLANS.map((plan, index) => (
             <Grid item xs={12} md={4} key={plan.name}>
               <Zoom in timeout={500 + index * 200}>
@@ -95,11 +96,16 @@ export default function PricingSection() {
                     />
                   )}
 
-                  <CardContent sx={{ p: { xs: 2, md: 4 } }}>
+                  <CardContent 
+                    sx={{ 
+                      px: { xs: 2, md: 4 },
+                      py: { xs: 2, md: 4 } 
+                      }}
+                  >
                     <Typography
                       variant="h5"
                       sx={{
-                        mb: { xs: 1, md: 2 },
+                        mb: { xs: 0.5, md: 2 },
                         fontWeight: 600,
                         textAlign: "center",
                       }}
@@ -107,7 +113,7 @@ export default function PricingSection() {
                       {plan.name}
                     </Typography>
 
-                    <Box sx={{ textAlign: "center", mb: { xs: 1, md: 3 } }}>
+                    <Box sx={{ textAlign: "center", mb: { xs: 1, md: 1 } }}>
                       <Typography
                         variant="h4"
                         sx={{ fontWeight: 700, color: "primary.main" }}
@@ -123,9 +129,9 @@ export default function PricingSection() {
                       </Typography>
                     </Box>
 
-                    <List sx={{ mb: { xs: 1, md: 3 } }}>
+                    <List sx={{ mb: { xs: 0.5, md: 3 } }}>
                       {plan.features.map((feature, featureIndex) => (
-                        <ListItem key={featureIndex} sx={{ px: 0, py: 0.5 }}>
+                        <ListItem key={featureIndex} sx={{ px: 0, py: { xs: 0.2, md: 0.5 } }}>
                           <ListItemIcon sx={{ minWidth: 30 }}>
                             <CheckIcon
                               sx={{ color: "success.main", fontSize: 20 }}

@@ -70,7 +70,7 @@ export default function Hero() {
                 }}
               >
                 Where Innovation Meets{" "}
-                <span
+                {/* <span
                   style={{
                     background:
                       // "linear-gradient(45deg, rgb(249, 5, 127), rgb(21, 35, 230))",
@@ -78,9 +78,21 @@ export default function Hero() {
                     backgroundClip: "text",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
-                    animation: "pulse 2s infinite",
+                    animation: "exWave 1.8s ease-in-out infinite",
                     // textShadow: "0 1px 6px rgba(255,255,255,0.35)",
                     //  WebkitTextStroke: "0.5px rgba(255,255,255,0.75)",
+                  }}
+                >
+                  Excellence
+                </span> */}
+                <span
+                  style={{
+                    display: "inline-block",
+                    background: "linear-gradient(45deg, #FFF500, #FF2CAD)",
+                    backgroundClip: "text",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    animation: "exWave 1.8s ease-in-out infinite",
                   }}
                 >
                   Excellence
@@ -102,7 +114,7 @@ export default function Hero() {
               <Box
                 sx={{
                   display: "flex",
-                  gap: { xs: 1, md: 2},
+                  gap: { xs: 1, md: 2 },
                   flexWrap: "wrap",
                   animation: "slideInLeft 1s ease-out 0.6s both",
                 }}
@@ -191,7 +203,11 @@ export default function Hero() {
                 >
                   <Typography
                     variant="h6"
-                    sx={{ mb: { xs: 1, sm: 2, md: 3 }, color: "text.primary", fontWeight: 600 }}
+                    sx={{
+                      mb: { xs: 1, sm: 2, md: 3 },
+                      color: "text.primary",
+                      fontWeight: 600,
+                    }}
                   >
                     Quick Facts
                   </Typography>
@@ -236,14 +252,14 @@ export default function Hero() {
                           </Typography>
                           <Typography
                             variant="body2"
-                            sx={{ 
-                            color: "text.secondary", 
-                            fontWeight: 500,
-                            fontSize: {
+                            sx={{
+                              color: "text.secondary",
+                              fontWeight: 500,
+                              fontSize: {
                                 xs: "0.75rem",
                                 sm: "0.75rem",
                                 md: "0.80rem",
-                              }, 
+                              },
                             }}
                           >
                             {stat.label}
@@ -301,20 +317,20 @@ export default function Hero() {
       <Box
         sx={{
           position: "absolute",
-          top: { xs: "70%", md: "32%" },
+          top: { xs: "70%", md: "34%" },
           right: { xs: "5%", md: "6%" },
           mt: { xs: 3, md: 0 },
           background: "rgba(255, 255, 255, 0.2)",
-          backdropFilter: {xs: "blur(200px)", md: "blur(20px)"},
+          backdropFilter: { xs: "blur(100px)", md: "blur(20px)" },
           border: "1px solid rgba(255, 255, 255, 0.3)",
           borderRadius: "50% 50% 40% 60% / 60% 40% 60% 40%",
-          px: { xs: 2, md: 5 },
+          px: { xs: 3, md: 5 },
           py: { xs: 2, md: 3 },
           color: "white",
           textAlign: "center",
           boxShadow: "0 8px 25px rgba(0, 0, 0, 0.25)",
-          animation:
-            "fadeIn 2s ease-out 1.5s both, floatCloud 4s ease-in-out infinite",
+          // animation:
+            // "fadeIn 2s ease-out 1.5s both, floatCloud 4s ease-in-out infinite",
           zIndex: 2,
           maxWidth: { xs: "70%", md: "40%" },
           mx: { xs: "auto", md: "unset" },
@@ -383,6 +399,12 @@ export default function Hero() {
           @keyframes fadeIn {
             0% { opacity: 0; transform: translateY(20px); }
             100% { opacity: 1; transform: translateY(0); }
+          }
+            @keyframes exWave {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0); }
+          }
           }
         `}
       </style>
