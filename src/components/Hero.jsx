@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import BIRDS from "vanta/dist/vanta.birds.min";
+import * as THREE from "three";
 import {
   Box,
   Container,
@@ -15,13 +17,50 @@ export default function Hero() {
   const [fadeIn, setFadeIn] = useState(false);
   const [imageJump, setImageJump] = useState(false);
 
+  // VANTA BIRDS
+  const vantaRef = useRef(null);
+  const [vantaEffect, setVantaEffect] = useState(null);
+
+  useEffect(() => {
+    if (!vantaEffect && vantaRef.current) {
+      const isMobile = window.innerWidth < 768;
+
+      const effect = BIRDS({
+        el: vantaRef.current,
+        THREE,
+        backgroundAlpha: 0.0,
+        scale: 1.0,
+        scaleMobile: isMobile ? 0.5 : 1.0,
+        quantity: isMobile ? 1 : 1.5,
+        birdSize: 0.6,
+        wingSpan: 22,
+        color1: "#FFFFFF",
+        color2: 50943,
+        colorMode: "varianceGradient",
+        cohesion: isMobile ? 15 : 25,
+        alignment: isMobile ? 15 : 40,
+        separation: 8,
+        speed: isMobile ? 0.2 : 1.6,
+        speedLimit: isMobile ? 0.5 : 6,
+        freedomFactor: isMobile ? 0.5 : 1.0,
+        forceAnimate: !isMobile,
+        mouseControls: true,
+        touchControls: !isMobile,
+      });
+      setVantaEffect(effect);
+    }
+
+    return () => {
+      if (vantaEffect) vantaEffect.destroy();
+    };
+  }, [vantaEffect]);
+
   useEffect(() => {
     setFadeIn(true);
     const jumpTimeout = setTimeout(() => setImageJump(true), 600);
     return () => clearTimeout(jumpTimeout);
   }, []);
 
-  // Smooth scroll function
   const scrollToSection = (id) => {
     const section = document.querySelector(id);
     if (section) section.scrollIntoView({ behavior: "smooth" });
@@ -30,6 +69,7 @@ export default function Hero() {
   return (
     <Box
       id="home"
+      ref={vantaRef}
       sx={{
         pt: { xs: 8, md: 12 },
         pb: { xs: 2, md: 6 },
@@ -47,13 +87,14 @@ export default function Hero() {
               <Typography
                 variant="h2"
                 sx={{
-                  mb: 2,
+                  mb: { xs: 2, md: 2 },
                   background: "linear-gradient(45deg, #ffffff, #e0e7ff)",
                   backgroundClip: "text",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   animation: "slideInLeft 1s ease-out",
                   fontSize: { xs: "2rem", md: "3.75rem" },
+                  fontWeight: { xs: 500, md: 400 },
                   lineHeight: { xs: 1.2, md: 1.1 },
                 }}
               >
@@ -70,21 +111,6 @@ export default function Hero() {
                 }}
               >
                 Where Innovation Meets{" "}
-                {/* <span
-                  style={{
-                    background:
-                      // "linear-gradient(45deg, rgb(249, 5, 127), rgb(21, 35, 230))",
-                      "linear-gradient(45deg, #FFE600, #FF4BC1)",
-                    backgroundClip: "text",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    animation: "exWave 1.8s ease-in-out infinite",
-                    // textShadow: "0 1px 6px rgba(255,255,255,0.35)",
-                    //  WebkitTextStroke: "0.5px rgba(255,255,255,0.75)",
-                  }}
-                >
-                  Excellence
-                </span> */}
                 <span
                   style={{
                     display: "inline-block",
@@ -131,9 +157,6 @@ export default function Hero() {
                     px: { xs: 1.5, sm: 3, md: 4 },
                     py: { xs: 1.5, sm: 1, md: 1.5 },
                     fontSize: { xs: "0.9rem", sm: "1rem", md: "1.1rem" },
-                    // px: 4,
-                    // py: 1.5,
-                    // fontSize: "1.1rem",
                     fontWeight: 600,
                     "&:before": {
                       content: '""',
@@ -142,10 +165,7 @@ export default function Hero() {
                       left: "-100%",
                       width: "200%",
                       height: "100%",
-                      // background:
-                      //   "linear-gradient(120deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0.3) 100%)",
                       transform: "skewX(-20deg)",
-                      // animation: "shine 10s linear infinite",
                     },
                     "&:hover": {
                       transform: "translateY(-2px) scale(1.05)",
@@ -182,40 +202,26 @@ export default function Hero() {
 
             {/* RIGHT: Quick Facts */}
             <Grid item xs={12} md={6}>
-              <Fade
-                in={fadeIn}
-                timeout={1000}
-                style={{ transitionDelay: "0.3s" }}
-              >
+              <Fade in={fadeIn} timeout={1000} style={{ transitionDelay: "0.3s" }}>
                 <Paper
                   elevation={10}
                   sx={{
-                    p: { xs: 1.5, sm: 3, md: 4 },
+                    p: { xs: 1.25, sm: 3, md: 4 },
                     borderRadius: 3,
                     background: "rgba(255, 255, 255, 0.95)",
                     backdropFilter: "blur(10px)",
                     animation: "slideInRight 1s ease-out 0.5s both",
                     position: "relative",
                     zIndex: 2,
-                    // width: "100%",
-                    // overflow: "hidden",
                   }}
                 >
                   <Typography
                     variant="h6"
-                    sx={{
-                      mb: { xs: 1, sm: 2, md: 3 },
-                      color: "text.primary",
-                      fontWeight: 600,
-                    }}
+                    sx={{ mb: { xs: 1, sm: 2, md: 3 }, color: "text.primary", fontWeight: 600 }}
                   >
                     Quick Facts
                   </Typography>
-                  <Grid
-                    container
-                    spacing={{ xs: 0.5, sm: 2, md: 3 }} // ✅ much smaller gap on phone
-                    columnSpacing={{ xs: 0.5, sm: 2, md: 3 }}
-                  >
+                  <Grid container spacing={{ xs: 0.5, sm: 2, md: 3 }} columnSpacing={{ xs: 0.5, sm: 2, md: 3 }}>
                     {STATS.map((stat) => (
                       <Grid item xs={4} sm={4} md={4} key={stat.label}>
                         <Box
@@ -223,8 +229,7 @@ export default function Hero() {
                             textAlign: "center",
                             p: { xs: 1, sm: 2 },
                             borderRadius: 2,
-                            background:
-                              "linear-gradient(135deg, #f8fafc, #e2e8f0)",
+                            background: "linear-gradient(135deg, #f8fafc, #e2e8f0)",
                             transition: "all 0.3s ease",
                             "&:hover": {
                               transform: "translateY(-5px)",
@@ -232,36 +237,14 @@ export default function Hero() {
                             },
                           }}
                         >
-                          <stat.icon
-                            sx={{ fontSize: 34, color: stat.color, mb: 1 }}
-                          />
+                          <stat.icon sx={{ fontSize: 34, color: stat.color, mb: 1 }} />
                           <Typography
                             variant="h4"
-                            sx={{
-                              fontWeight: 700,
-                              color: stat.color,
-                              mb: 0.5,
-                              fontSize: {
-                                xs: "1.1rem",
-                                sm: "1.25rem",
-                                md: "1.75rem",
-                              },
-                            }}
+                            sx={{ fontWeight: 700, color: stat.color, mb: 0.5, fontSize: { xs: "1.1rem", sm: "1.25rem", md: "1.75rem" } }}
                           >
                             {stat.value}
                           </Typography>
-                          <Typography
-                            variant="body2"
-                            sx={{
-                              color: "text.secondary",
-                              fontWeight: 500,
-                              fontSize: {
-                                xs: "0.75rem",
-                                sm: "0.75rem",
-                                md: "0.80rem",
-                              },
-                            }}
-                          >
+                          <Typography variant="body2" sx={{ color: "text.secondary", fontWeight: 500, fontSize: { xs: "0.75rem", sm: "0.75rem", md: "0.80rem" } }}>
                             {stat.label}
                           </Typography>
                         </Box>
@@ -276,7 +259,6 @@ export default function Hero() {
       </Container>
 
       {/* Animated Hero Image */}
-      {/* Hero image: absolute on larger screens, flows in document on small screens */}
       <Box
         component="img"
         src={homepage2}
@@ -285,9 +267,7 @@ export default function Hero() {
           position: { xs: "relative", md: "absolute" },
           top: { xs: "auto", md: "70%" },
           right: { xs: "auto", md: 0 },
-          transform: imageJump
-            ? { xs: "translateY(0)", md: "translateY(-50%)" }
-            : { xs: "translateY(0)", md: "translateY(-30%)" },
+          transform: imageJump ? { xs: "translateY(0)", md: "translateY(-50%)" } : { xs: "translateY(0)", md: "translateY(-30%)" },
           width: { xs: "100%", md: "40%" },
           maxWidth: { xs: "720px", md: "unset" },
           height: "auto",
@@ -301,14 +281,8 @@ export default function Hero() {
           mx: { xs: "auto", md: 0 },
           "&:hover": {
             transform: imageJump
-              ? {
-                  xs: "translateY(0)",
-                  md: "translateY(-52%) scale(1.05) rotate3d(1,1,0,6deg)",
-                }
-              : {
-                  xs: "translateY(0)",
-                  md: "translateY(-32%) scale(1.05) rotate3d(1,1,0,6deg)",
-                },
+              ? { xs: "translateY(0)", md: "translateY(-52%) scale(1.05) rotate3d(1,1,0,6deg)" }
+              : { xs: "translateY(0)", md: "translateY(-32%) scale(1.05) rotate3d(1,1,0,6deg)" },
           },
         }}
       />
@@ -329,8 +303,6 @@ export default function Hero() {
           color: "white",
           textAlign: "center",
           boxShadow: "0 8px 25px rgba(0, 0, 0, 0.25)",
-          // animation:
-            // "fadeIn 2s ease-out 1.5s both, floatCloud 4s ease-in-out infinite",
           zIndex: 2,
           maxWidth: { xs: "70%", md: "40%" },
           mx: { xs: "auto", md: "unset" },
@@ -344,11 +316,7 @@ export default function Hero() {
             backgroundClip: "text",
             WebkitBackgroundClip: "text",
             letterSpacing: "0.5px",
-            fontSize: {
-              xs: "1rem",
-              sm: "1.25rem",
-              md: "1.50rem",
-            },
+            fontSize: { xs: "1rem", sm: "1.25rem", md: "1.50rem" },
           }}
         >
           You think it, we ink it.

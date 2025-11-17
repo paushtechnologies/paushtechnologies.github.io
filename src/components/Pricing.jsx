@@ -35,7 +35,7 @@ export default function PricingSection() {
       }}
     >
       <Container maxWidth="lg">
-        <Box sx={{ textAlign: "center", mb: 6 }}>
+        <Box sx={{ textAlign: "center", mb: { xs: 4, md: 6 } }}>
           <Typography
             variant="h3"
             sx={{
