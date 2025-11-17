@@ -94,7 +94,7 @@ export default function Hero() {
                   WebkitTextFillColor: "transparent",
                   animation: "slideInLeft 1s ease-out",
                   fontSize: { xs: "2rem", md: "3.75rem" },
-                  fontWeight: { xs: 500, md: 400 },
+                  fontWeight: { xs: 450, md: 400 },
                   lineHeight: { xs: 1.2, md: 1.1 },
                 }}
               >
@@ -291,7 +291,7 @@ export default function Hero() {
       <Box
         sx={{
           position: "absolute",
-          top: { xs: "70%", md: "34%" },
+          top: { xs: "69%", md: "34%" },
           right: { xs: "5%", md: "6%" },
           mt: { xs: 3, md: 0 },
           background: "rgba(255, 255, 255, 0.2)",
