@@ -8,6 +8,7 @@ import {
   Card,
   CardContent,
 } from "@mui/material";
+import { ScrollAnimation, StaggerContainer, StaggerItem } from "./ScrollAnimation";
 
 import WebIcon from "@mui/icons-material/Web";
 import CloudIcon from "@mui/icons-material/Cloud";
@@ -89,43 +90,47 @@ export default function ServicesSection() {
   return (
     <Box sx={{ py: { xs: 6, md: 10 }, background: "#f8fafc" }}>
       <Container maxWidth="lg">
-        <Box sx={{ textAlign: "center", mb: { xs: 2, md: 4 } }}>
-          <Typography
-            variant="h3"
-            sx={{
-              // fontWeight: 700,
-              mb: { xs: 0.5, md: 1 },
-              fontSize: { xs: "2rem", md: "3rem" },
-            }}
-          >
-            Our Services
-          </Typography>
-          <Typography
-            variant="h6"
-            sx={{
-              color: "text.secondary",
-              maxWidth: 820,
-              mx: "auto",
-              fontWeight: 400,
-              fontSize: { xs: "0.85rem", md: "1.25rem" },
-            }}
-          >
-            We build world-class web, mobile, and cloud solutions that empower
-            brands to achieve more — smartly, beautifully, and efficiently.
-          </Typography>
-        </Box>
+        <ScrollAnimation>
+          <Box sx={{ textAlign: "center", mb: { xs: 2, md: 4 } }}>
+            <Typography
+              variant="h3"
+              sx={{
+                // fontWeight: 700,
+                mb: { xs: 0.5, md: 1 },
+                fontSize: { xs: "2rem", md: "3rem" },
+              }}
+            >
+              Our Services
+            </Typography>
+            <Typography
+              variant="h6"
+              sx={{
+                color: "text.secondary",
+                maxWidth: 820,
+                mx: "auto",
+                fontWeight: 400,
+                fontSize: { xs: "0.85rem", md: "1.25rem" },
+              }}
+            >
+              We build world-class web, mobile, and cloud solutions that empower
+              brands to achieve more — smartly, beautifully, and efficiently.
+            </Typography>
+          </Box>
+        </ScrollAnimation>
 
-        <Grid
-          container
-          spacing={{ xs: 2, md: 4 }}
-          alignItems="stretch"
-          justifyContent="center"
-        >
+        <StaggerContainer>
+          <Grid
+            container
+            spacing={{ xs: 2, md: 4 }}
+            alignItems="stretch"
+            justifyContent="center"
+          >
           {SERVICES.map((service) => {
             const Icon = service.icon;
             return (
               <Grid item xs={4} sm={6} md={4} lg={3} key={service.id}>
-                <Card
+                <StaggerItem>
+                  <Card
                   sx={{
                     width: { xs: "130px", sm: "180px", md: "100%" },
                     display: "flex",
@@ -266,10 +271,12 @@ export default function ServicesSection() {
                     </Box>
                   </CardContent>
                 </Card>
+                </StaggerItem>
               </Grid>
             );
           })}
         </Grid>
+        </StaggerContainer>
       </Container>
     </Box>
   );

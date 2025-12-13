@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { ScrollAnimation } from "./ScrollAnimation";
 import dashboard from "../assets/OurProjects/Alpha/dashboard.png";
 import mindmart1 from "../assets/OurProjects/mindmart1.png";
 import ledger from "../assets/OurProjects/Alpha/ledger.png";
@@ -21,7 +22,7 @@ const PROJECTS = [
     title: "Fintech Website",
     category: "Finance · Dashboard",
     img: dashboard,
-    liveUrl: "https://app.alphacapitalclub.in/landing",
+    liveUrl: "https://app.alphacapitalclub.in/",
   },
   {
     title: "E-commerce Platform",
@@ -156,24 +157,27 @@ export default function ProjectsCarousel() {
     >
       <Container maxWidth="lg">
         {/* Heading */}
-        <Box sx={{ textAlign: "center", mb: { xs: 4, md: 6 } }}>
-          <Typography
-            variant="h3"
-            sx={{ mb: 1, fontSize: { xs: "1.6rem", md: "3rem" } }}
-          >
-            Our Completed Projects
-          </Typography>
-          <Typography
-            variant="subtitle1"
-            sx={{ color: "text.secondary", maxWidth: 800, mx: "auto" }}
-          >
-            Exclusive, conversion-focused website designs — handcrafted for
-            brands, SaaS, e-commerce and enterprise.
-          </Typography>
-        </Box>
+        <ScrollAnimation>
+          <Box sx={{ textAlign: "center", mb: { xs: 4, md: 6 } }}>
+            <Typography
+              variant="h3"
+              sx={{ mb: 1, fontSize: { xs: "1.6rem", md: "3rem" } }}
+            >
+              Our Completed Projects
+            </Typography>
+            <Typography
+              variant="subtitle1"
+              sx={{ color: "text.secondary", maxWidth: 800, mx: "auto" }}
+            >
+              Exclusive, conversion-focused website designs — handcrafted for
+              brands, SaaS, e-commerce and enterprise.
+            </Typography>
+          </Box>
+        </ScrollAnimation>
 
         {/* Carousel */}
-        <Box sx={{ position: "relative", display: "flex", alignItems: "center" }}>
+        <ScrollAnimation delay={0.2}>
+          <Box sx={{ position: "relative", display: "flex", alignItems: "center" }}>
           {/* Prev */}
           <IconButton
             onClick={handlePrev}
@@ -327,7 +331,8 @@ export default function ProjectsCarousel() {
           >
             <ArrowForwardIosIcon />
           </IconButton>
-        </Box>
+          </Box>
+        </ScrollAnimation>
       </Container>
     </Box>
   );

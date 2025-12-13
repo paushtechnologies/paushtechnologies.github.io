@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import { GOOGLE_SCRIPT_URL } from "../data/constants";
 import customercare from "../assets/customer-care.jpg";
+import { ScrollAnimation, fadeInLeft, fadeInRight } from "./ScrollAnimation";
 
 export default function ContactSection() {
   const [form, setForm] = useState({
@@ -76,27 +77,29 @@ export default function ContactSection() {
       background: "linear-gradient(135deg,#f9fafb,#eef2ff)" 
       }}>
       <Container maxWidth="lg">
-        <Typography
-          variant="h3"
-          sx={{ 
-          textAlign: "center", 
-          fontWeight: 700, 
-          mb: { xs: 0.5, md: 1 },
-          fontSize: { xs: "2rem", md: "3rem" } }}
-        >
-          Contact Us
-        </Typography>
-        <Typography
-          variant="h6"
-          sx={{ 
-          textAlign: "center", 
-          mb: { xs: 1, md: 2 }, 
-          color: "text.secondary",
-          fontSize: { xs: "0.9rem", md: "1.25rem" } }}
-        >
-          Have an idea or project in mind? Fill the form below and we’ll get
-          back to you.
-        </Typography>
+        <ScrollAnimation>
+          <Typography
+            variant="h3"
+            sx={{ 
+            textAlign: "center", 
+            fontWeight: 700, 
+            mb: { xs: 0.5, md: 1 },
+            fontSize: { xs: "2rem", md: "3rem" } }}
+          >
+            Contact Us
+          </Typography>
+          <Typography
+            variant="h6"
+            sx={{ 
+            textAlign: "center", 
+            mb: { xs: 1, md: 2 }, 
+            color: "text.secondary",
+            fontSize: { xs: "0.9rem", md: "1.25rem" } }}
+          >
+            Have an idea or project in mind? Fill the form below and we'll get
+            back to you.
+          </Typography>
+        </ScrollAnimation>
 
         <Grid
           container
@@ -118,11 +121,12 @@ export default function ContactSection() {
               alignItems: "center",
             }}
           >
-            <Box
-              component="form"
-              onSubmit={handleSubmit}
-              sx={{ width: "100%", maxWidth: 520 }}
-            >
+            <ScrollAnimation variant={fadeInLeft} delay={0.2}>
+              <Box
+                component="form"
+                onSubmit={handleSubmit}
+                sx={{ width: "100%", maxWidth: 520 }}
+              >
               <TextField
                 fullWidth
                 label="Full Name"
@@ -189,7 +193,8 @@ export default function ContactSection() {
               >
                 Send Message
               </Button>
-            </Box>
+              </Box>
+            </ScrollAnimation>
           </Grid>
 
           {/* Right: Image (separate grid item for better stacking on mobile) */}
@@ -205,19 +210,21 @@ export default function ContactSection() {
               // background: { xs: "transparent", md: "linear-gradient(135deg,#fff,#eef2ff)" },
             }}
           >
-            <Box
-              component="img"
-              src={customercare}
-              alt="Contact Us"
-              sx={{
-                width: { xs: "100%", md: "100%" },
-                maxWidth: 520,
-                height: { xs: "auto", md: "100%" },
-                objectFit: "cover",
-                borderRadius: { xs: "20px", md: "30px" },
-                display: "block",
-              }}
-            />
+            <ScrollAnimation variant={fadeInRight} delay={0.3}>
+              <Box
+                component="img"
+                src={customercare}
+                alt="Contact Us"
+                sx={{
+                  width: { xs: "100%", md: "100%" },
+                  maxWidth: 520,
+                  height: { xs: "auto", md: "100%" },
+                  objectFit: "cover",
+                  borderRadius: { xs: "20px", md: "30px" },
+                  display: "block",
+                }}
+              />
+            </ScrollAnimation>
           </Grid>
         </Grid>
 

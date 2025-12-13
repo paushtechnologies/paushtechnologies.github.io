@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Container, Grid, Typography, Button } from "@mui/material";
 import { COMPANY_NAME } from "../data/constants";
+import { ScrollAnimation, fadeInLeft, fadeInRight } from "./ScrollAnimation";
 
 export default function AboutSection() {
   return (
@@ -8,83 +9,80 @@ export default function AboutSection() {
       <Container maxWidth="lg">
         <Grid container spacing={{ xs: 2, md: 6 }} alignItems="center">
           <Grid item xs={12} md={6}>
-            <Typography
-              variant="h4"
-              sx={{
-                mb: 3,
-                color: "text.primary",
-                animation: "fadeInUp 1s ease-out",
-                fontSize: { xs: "1.5rem", md: "2.25rem" }
-              }}
-            >
-              Welcome to the Future with {COMPANY_NAME}
-            </Typography>
-            <Typography
-              variant="h6"
-              sx={{
-                mb: 3,
-                color: "text.secondary",
-                animation: "fadeInUp 1s ease-out 0.2s both",
-                fontSize: { xs: "0.85rem", md: "1.25rem" }
-              }}
-            >
-              We're not just a technology company—we're architects of tomorrow's
-              digital landscape, crafting innovative solutions that redefine
-              what's possible in the digital realm.
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                mb: 3,
-                color: "text.secondary",
-                animation: "fadeInUp 1s ease-out 0.4s both",
-                fontSize: { xs: "0.75rem", md: "1rem" }
-              }}
-            >
-              Our mission is to bridge the gap between cutting-edge technology
-              and real-world business challenges, creating digital ecosystems
-              that drive unprecedented growth and efficiency.
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                mb: 4,
-                color: "text.secondary",
-                animation: "fadeInUp 1s ease-out 0.6s both",
-                fontSize: { xs: "0.75rem", md: "1rem" }
-              }}
-            >
-              From AI-powered automation to blockchain innovations, we don't
-              just follow trends—we create them. Every solution we build is
-              designed to be future-proof, scalable, and transformative.
-            </Typography>
-            <Button
-              variant="contained"
-              size="large"
-              sx={{
-                background: "linear-gradient(45deg, #6366f1, #ec4899)",
-                borderRadius: "25px",
-                px: { xs: 2, md: 4 },
-                py: 1.5,
-                fontWeight: 600,
-                fontSize: { xs: "0.75rem", md: "1rem" },
-                animation: "fadeInUp 1s ease-out 0.8s both",
-                "&:hover": {
-                  transform: "translateY(-3px) scale(1.05)",
-                  boxShadow: "0 15px 35px rgba(99, 102, 241, 0.3)",
-                },
-              }}
-            >
-              🚀 Discover Our Story
-            </Button>
+            <ScrollAnimation variant={fadeInLeft}>
+              <Typography
+                variant="h4"
+                sx={{
+                  mb: 3,
+                  color: "text.primary",
+                  fontSize: { xs: "1.5rem", md: "2.25rem" }
+                }}
+              >
+                Welcome to the Future with {COMPANY_NAME}
+              </Typography>
+              <Typography
+                variant="h6"
+                sx={{
+                  mb: 3,
+                  color: "text.secondary",
+                  fontSize: { xs: "0.85rem", md: "1.25rem" }
+                }}
+              >
+                We're not just a technology company—we're architects of tomorrow's
+                digital landscape, crafting innovative solutions that redefine
+                what's possible in the digital realm.
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  mb: 3,
+                  color: "text.secondary",
+                  fontSize: { xs: "0.75rem", md: "1rem" }
+                }}
+              >
+                Our mission is to bridge the gap between cutting-edge technology
+                and real-world business challenges, creating digital ecosystems
+                that drive unprecedented growth and efficiency.
+              </Typography>
+              <Typography
+                variant="body1"
+                sx={{
+                  mb: 4,
+                  color: "text.secondary",
+                  fontSize: { xs: "0.75rem", md: "1rem" }
+                }}
+              >
+                From AI-powered automation to blockchain innovations, we don't
+                just follow trends—we create them. Every solution we build is
+                designed to be future-proof, scalable, and transformative.
+              </Typography>
+              <Button
+                variant="contained"
+                size="large"
+                sx={{
+                  background: "linear-gradient(45deg, #6366f1, #ec4899)",
+                  borderRadius: "25px",
+                  px: { xs: 2, md: 4 },
+                  py: 1.5,
+                  fontWeight: 600,
+                  fontSize: { xs: "0.75rem", md: "1rem" },
+                  "&:hover": {
+                    transform: "translateY(-3px) scale(1.05)",
+                    boxShadow: "0 15px 35px rgba(99, 102, 241, 0.3)",
+                  },
+                }}
+              >
+                🚀 Discover Our Story
+              </Button>
+            </ScrollAnimation>
           </Grid>
           <Grid item xs={12} md={6}>
-            <Box
-              sx={{
-                position: "relative",
-                animation: "slideInRight 1s ease-out 0.5s both",
-              }}
-            >
+            <ScrollAnimation variant={fadeInRight} delay={0.2}>
+              <Box
+                sx={{
+                  position: "relative",
+                }}
+              >
               <Box
                 sx={{
                   width: "105%",
@@ -136,7 +134,8 @@ export default function AboutSection() {
                   </Typography>
                 </Box>
               </Box>
-            </Box>
+              </Box>
+            </ScrollAnimation>
           </Grid>
         </Grid>
       </Container>

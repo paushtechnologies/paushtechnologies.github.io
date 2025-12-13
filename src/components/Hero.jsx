@@ -13,6 +13,45 @@ import {
 import { STATS } from "../data/constants";
 import homepage2 from "../assets/homepage2.png";
 
+/* ================= COUNT UP COMPONENT ================= */
+const CountUp = ({ value, duration = 3000 }) => {
+  const [displayValue, setDisplayValue] = useState(0);
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    if (hasAnimated.current) return;
+    hasAnimated.current = true;
+
+    const start = 0;
+    const end = Number(value);
+    const startTime = performance.now();
+
+    const animate = (currentTime) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      // ease-out
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = start + (end - start) * eased;
+
+      setDisplayValue(current);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [value, duration]);
+
+  const formatted =
+    Number.isInteger(value)
+      ? Math.round(displayValue)
+      : displayValue.toFixed(1).replace(/\.0$/, "");
+
+  return <>{formatted}</>;
+};
+/* ===================================================== */
 export default function Hero() {
   const [fadeIn, setFadeIn] = useState(false);
   const [imageJump, setImageJump] = useState(false);
@@ -71,9 +110,10 @@ export default function Hero() {
       id="home"
       ref={vantaRef}
       sx={{
-        pt: { xs: 8, md: 12 },
+        pt: { xs: 10, md: 12 },
         pb: { xs: 2, md: 6 },
         background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+        // background: "linear-gradient(90deg,  #FDB4BF 0%,  #F5C9D8 25%,  #E8D3EB 50%,  #D6D9EB 75%,  #B2DCDD 100%)",
         color: "white",
         position: "relative",
         overflow: "hidden",
@@ -242,10 +282,10 @@ export default function Hero() {
                             variant="h4"
                             sx={{ fontWeight: 700, color: stat.color, mb: 0.5, fontSize: { xs: "1.1rem", sm: "1.25rem", md: "1.75rem" } }}
                           >
-                            {stat.value}
+                            <CountUp value={stat.value}/>+
                           </Typography>
                           <Typography variant="body2" sx={{ color: "text.secondary", fontWeight: 500, fontSize: { xs: "0.75rem", sm: "0.75rem", md: "0.80rem" } }}>
-                            {stat.label}
+                            {stat.label} 
                           </Typography>
                         </Box>
                       </Grid>

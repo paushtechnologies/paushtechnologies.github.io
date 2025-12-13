@@ -22,19 +22,19 @@ export const RECAPTCHA_SITE_KEY = "6LfF8_krAAAAAH4la8Gxl_HwY-mkJjhNa5UlkvWB";
 export const STATS = [
   {
     label: "Innovation Rate",
-    value: "97%",
+    value: 97,
     icon: TrendingUpIcon,
     color: "#6366f1",
   },
   {
     label: "Global Partners",
-    value: "75+",
+    value: 75,
     icon: PeopleIcon,
     color: "#ec4899",
   },
   {
     label: "Tech Solutions",
-    value: "100+",
+    value: 100,
     icon: BusinessIcon,
     color: "#10b981",
   },

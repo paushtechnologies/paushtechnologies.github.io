@@ -2,7 +2,7 @@
 import React from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import NavBar from "./components/NavBar";
-import Hero from "./components/hero";
+import Hero from "./components/Hero";
 import ServicesSection from "./components/Services";
 import PricingSection from "./components/Pricing";
 import ContactSection from "./components/Contact";
@@ -26,7 +26,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <NavBar />
-      <div style={{ scrollBehavior: "smooth" }}>
+      <div style={{ scrollBehavior: "smooth", overflowX: "hidden" }}>
         <section id="home">
           <Hero />
         </section>

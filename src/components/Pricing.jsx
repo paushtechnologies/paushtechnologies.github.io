@@ -18,6 +18,7 @@ import {
 } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
 import { PRICING_PLANS } from "../data/pricing";
+import { ScrollAnimation, StaggerContainer, StaggerItem } from "./ScrollAnimation";
 
 export default function PricingSection() {
   const [copyAlert, setCopyAlert] = useState(false);
@@ -35,39 +36,42 @@ export default function PricingSection() {
       }}
     >
       <Container maxWidth="lg">
-        <Box sx={{ textAlign: "center", mb: { xs: 4, md: 6 } }}>
-          <Typography
-            variant="h3"
-            sx={{
-              mb: { xs: 1, md: 2 },
-              color: "text.primary",
-              fontSize: { xs: "2rem", md: "3rem" },
-            }}
-          >
-            Plans & Pricing
-          </Typography>
+        <ScrollAnimation>
+          <Box sx={{ textAlign: "center", mb: { xs: 4, md: 6 } }}>
+            <Typography
+              variant="h3"
+              sx={{
+                mb: { xs: 1, md: 2 },
+                color: "text.primary",
+                fontSize: { xs: "2rem", md: "3rem" },
+              }}
+            >
+              Plans & Pricing
+            </Typography>
 
-          <Typography
-            variant="h6"
-            sx={{
-              color: "text.secondary",
-              maxWidth: 800,
-              mx: "auto",
-              fontSize: { xs: "0.85rem", md: "1.2rem" },
-            }}
-          >
-            We are among India's best web solution companies committed to
-            offering full ROI-driven customized web services at affordable
-            prices.
-          </Typography>
-        </Box>
+            <Typography
+              variant="h6"
+              sx={{
+                color: "text.secondary",
+                maxWidth: 800,
+                mx: "auto",
+                fontSize: { xs: "0.85rem", md: "1.2rem" },
+              }}
+            >
+              We are among India's best web solution companies committed to
+              offering full ROI-driven customized web services at affordable
+              prices.
+            </Typography>
+          </Box>
+        </ScrollAnimation>
 
-        <Grid 
-        container spacing={{ xs: 2, md: 4 }} justifyContent="center">
-          {PRICING_PLANS.map((plan, index) => (
-            <Grid item xs={12} md={4} key={plan.name}>
-              <Zoom in timeout={500 + index * 200}>
-                <Card
+        <StaggerContainer>
+          <Grid 
+          container spacing={{ xs: 2, md: 4 }} justifyContent="center">
+            {PRICING_PLANS.map((plan, index) => (
+              <Grid item xs={12} md={4} key={plan.name}>
+                <StaggerItem>
+                  <Card
                   sx={{
                     height: "100%",
                     borderRadius: 3,
@@ -165,10 +169,11 @@ export default function PricingSection() {
                     </Button>
                   </CardContent>
                 </Card>
-              </Zoom>
-            </Grid>
-          ))}
-        </Grid>
+                </StaggerItem>
+              </Grid>
+            ))}
+          </Grid>
+        </StaggerContainer>
 
         {/* ✅ Snackbar for “Phone number copied!” */}
         <Snackbar
