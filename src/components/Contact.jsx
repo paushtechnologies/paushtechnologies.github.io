@@ -11,14 +11,17 @@ import {
   Alert,
 } from "@mui/material";
 import { GOOGLE_SCRIPT_URL } from "../data/constants";
+import { useLanguage } from "../context/LanguageContext";
 import customercare from "../assets/customer-care.jpg";
 import { ScrollAnimation, fadeInLeft, fadeInRight } from "./ScrollAnimation";
 
 export default function ContactSection() {
+  const { t } = useLanguage();
   const [form, setForm] = useState({
     name: "",
     email: "",
     phone: "",
+    projectType: "Website", // default
     message: "",
   });
   const [recaptchaToken, setRecaptchaToken] = useState(null);
@@ -38,7 +41,7 @@ export default function ContactSection() {
       setSnack({
         open: true,
         severity: "error",
-        message: "Please verify reCAPTCHA.",
+        message: t('contact.captchaError'),
       });
       return;
     }
@@ -47,16 +50,19 @@ export default function ContactSection() {
       // Send data to your Google Apps Script
       await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
-        mode: "no-cors", // required for Apps Script CORS behavior
+        mode: "no-cors",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          ...form,
+          message: `[Project Type: ${form.projectType}] ${form.message}`
+        }),
       });
 
       // no-cors response is opaque, so assume success
       setSnack({
         open: true,
         severity: "success",
-        message: "Submitted successfully!",
+        message: t('contact.successMessage'),
       });
 
       setForm({ name: "", email: "", phone: "", message: "" });
@@ -66,38 +72,39 @@ export default function ContactSection() {
       setSnack({
         open: true,
         severity: "error",
-        message: "Submission failed. Please try again.",
+        message: t('contact.errorMessage'),
       });
     }
   };
 
   return (
-    <Box sx={{ 
-      py: { xs: 4, md: 8 }, 
-      background: "linear-gradient(135deg,#f9fafb,#eef2ff)" 
-      }}>
+    <Box sx={{
+      py: { xs: 4, md: 8 },
+      background: "linear-gradient(135deg,#f9fafb,#eef2ff)"
+    }}>
       <Container maxWidth="lg">
         <ScrollAnimation>
           <Typography
             variant="h3"
-            sx={{ 
-            textAlign: "center", 
-            fontWeight: 700, 
-            mb: { xs: 0.5, md: 1 },
-            fontSize: { xs: "2rem", md: "3rem" } }}
+            sx={{
+              textAlign: "center",
+              fontWeight: 700,
+              mb: { xs: 0.5, md: 1 },
+              fontSize: { xs: "2rem", md: "3rem" }
+            }}
           >
-            Contact Us
+            {t('contact.title')}
           </Typography>
           <Typography
             variant="h6"
-            sx={{ 
-            textAlign: "center", 
-            mb: { xs: 1, md: 2 }, 
-            color: "text.secondary",
-            fontSize: { xs: "0.9rem", md: "1.25rem" } }}
+            sx={{
+              textAlign: "center",
+              mb: { xs: 1, md: 2 },
+              color: "text.secondary",
+              fontSize: { xs: "0.9rem", md: "1.25rem" }
+            }}
           >
-            Have an idea or project in mind? Fill the form below and we'll get
-            back to you.
+            {t('contact.subtitle')}
           </Typography>
         </ScrollAnimation>
 
@@ -127,72 +134,106 @@ export default function ContactSection() {
                 onSubmit={handleSubmit}
                 sx={{ width: "100%", maxWidth: 520 }}
               >
-              <TextField
-                fullWidth
-                label="Full Name"
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-                margin="normal"
-                required
-              />
-              <TextField
-                fullWidth
-                label="Email"
-                name="email"
-                type="email"
-                value={form.email}
-                onChange={handleChange}
-                margin="normal"
-                required
-              />
-              <TextField
-                fullWidth
-                label="Phone No."
-                name="phone"
-                value={form.phone}
-                onChange={handleChange}
-                margin="normal"
-              />
-              <TextField
-                fullWidth
-                label="Message"
-                name="message"
-                multiline
-                rows={3}
-                value={form.message}
-                onChange={handleChange}
-                margin="normal"
-                required
-              />
-
-              {/* reCAPTCHA */}
-              <Box sx={{ mt: 2, display: "flex", justifyContent: "left" }}>
-                <ReCAPTCHA
-                  sitekey="6LfF8_krAAAAAH4la8Gxl_HwY-mkJjhNa5UlkvWB"
-                  onChange={(token) => setRecaptchaToken(token)}
+                {/* <Typography variant="body2" sx={{ mb: 1.5, fontWeight: 700, color: "text.secondary" }}>
+                  {t('contact.interestedIn')}
+                </Typography>
+                <Box sx={{ display: "flex", gap: 1.5, mb: 3 }}>
+                  {[
+                    { id: "Website", label: t('contact.website') },
+                    { id: "App", label: t('contact.app') },
+                    { id: "Both", label: t('contact.both') },
+                  ].map((opt) => (
+                    <Box
+                      key={opt.id}
+                      onClick={() => setForm({ ...form, projectType: opt.id })}
+                      sx={{
+                        flex: 1,
+                        py: 1.2,
+                        textAlign: "center",
+                        cursor: "pointer",
+                        borderRadius: "12px",
+                        border: "2px solid",
+                        borderColor: form.projectType === opt.id ? "primary.main" : "rgba(0,0,0,0.08)",
+                        background: form.projectType === opt.id ? "rgba(99, 102, 241, 0.08)" : "white",
+                        transition: "all 0.2s ease",
+                        fontWeight: 700,
+                        fontSize: "0.85rem",
+                        color: form.projectType === opt.id ? "primary.main" : "text.secondary",
+                        "&:hover": {
+                          borderColor: "primary.main",
+                        },
+                      }}
+                    >
+                      {opt.label}
+                    </Box>
+                  ))}
+                </Box> */}
+                <TextField
+                  fullWidth
+                  label={t('contact.fullName')}
+                  name="name"
+                  value={form.name}
+                  onChange={handleChange}
+                  margin="normal"
+                  required
                 />
-              </Box>
+                <TextField
+                  fullWidth
+                  label={t('contact.email')}
+                  name="email"
+                  type="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  margin="normal"
+                  required
+                />
+                <TextField
+                  fullWidth
+                  label={t('contact.phoneNo')}
+                  name="phone"
+                  value={form.phone}
+                  onChange={handleChange}
+                  margin="normal"
+                />
+                <TextField
+                  fullWidth
+                  label={t('contact.message')}
+                  name="message"
+                  multiline
+                  rows={3}
+                  value={form.message}
+                  onChange={handleChange}
+                  margin="normal"
+                  required
+                />
 
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                size="large"
-                sx={{
-                  mt: 3,
-                  py: 1.5,
-                  fontWeight: 700,
-                  borderRadius: "30px",
-                  background: "linear-gradient(45deg, #2563eb, #10b981)",
-                  "&:hover": {
-                    transform: "scale(1.03)",
-                    boxShadow: "0 10px 25px rgba(37,99,235,0.3)",
-                  },
-                }}
-              >
-                Send Message
-              </Button>
+                {/* reCAPTCHA */}
+                <Box sx={{ mt: 2, display: "flex", justifyContent: "left" }}>
+                  <ReCAPTCHA
+                    sitekey="6LfF8_krAAAAAH4la8Gxl_HwY-mkJjhNa5UlkvWB"
+                    onChange={(token) => setRecaptchaToken(token)}
+                  />
+                </Box>
+
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  size="large"
+                  sx={{
+                    mt: 3,
+                    py: 1.5,
+                    fontWeight: 700,
+                    borderRadius: "30px",
+                    background: "linear-gradient(45deg, #2563eb, #10b981)",
+                    "&:hover": {
+                      transform: "scale(1.03)",
+                      boxShadow: "0 10px 25px rgba(37,99,235,0.3)",
+                    },
+                  }}
+                >
+                  {t('contact.sendMessage')}
+                </Button>
               </Box>
             </ScrollAnimation>
           </Grid>

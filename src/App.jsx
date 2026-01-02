@@ -1,6 +1,7 @@
 // App.jsx
 import React from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { LanguageProvider } from "./context/LanguageContext";
 import NavBar from "./components/NavBar";
 import Hero from "./components/Hero";
 import ServicesSection from "./components/Services";
@@ -25,40 +26,42 @@ const theme = createTheme({
 
 export default function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <NavBar />
-      <div style={{ scrollBehavior: "smooth", overflowX: "hidden" }}>
-        <section id="home">
-          <Hero />
-        </section>
+    <LanguageProvider>
+      <ThemeProvider theme={theme}>
+        <NavBar />
+        <div style={{ scrollBehavior: "smooth", overflowX: "hidden" }}>
+          <section id="home">
+            <Hero />
+          </section>
 
-        <section id="services">
-          <ServicesSection />
-        </section>
+          <section id="services">
+            <ServicesSection />
+          </section>
 
-        <section id="pricing">
-          <PricingSection />
-        </section>
+          <section id="pricing">
+            <PricingSection />
+          </section>
 
-        <section id="ourprojects">
-          <OurProjects />
-        </section>
+          <section id="ourprojects">
+            <OurProjects />
+          </section>
 
-        <section id="testimonials">
-          <TestimonialsSection />
-        </section>
+          <section id="testimonials">
+            <TestimonialsSection />
+          </section>
 
-        <section id="about">
-          <AboutSection />
-        </section>
+          <section id="about">
+            <AboutSection />
+          </section>
 
-        <section id="contact">
-          <ContactSection />
-        </section>
+          <section id="contact">
+            <ContactSection />
+          </section>
 
-        <Footer />
-      </div>
-      <FloatingContact />
-    </ThemeProvider>
+          <Footer />
+        </div>
+        <FloatingContact />
+      </ThemeProvider>
+    </LanguageProvider>
   );
 }

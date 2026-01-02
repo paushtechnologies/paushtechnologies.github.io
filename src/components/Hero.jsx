@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import { STATS } from "../data/constants";
 import homepage2 from "../assets/homepage2.png";
+import { useLanguage } from "../context/LanguageContext";
 
 /* ================= COUNT UP COMPONENT ================= */
 const CountUp = ({ value, duration = 3000 }) => {
@@ -53,6 +54,7 @@ const CountUp = ({ value, duration = 3000 }) => {
 };
 /* ===================================================== */
 export default function Hero() {
+  const { t } = useLanguage();
   const [fadeIn, setFadeIn] = useState(false);
   const [imageJump, setImageJump] = useState(false);
 
@@ -121,11 +123,11 @@ export default function Hero() {
     >
       <Container maxWidth="lg">
         <Fade in={fadeIn} timeout={1000}>
-          <Grid container spacing={6} alignItems="center">
+          <Grid container spacing={{ xs: 4, md: 8 }} alignItems="center">
             {/* LEFT: Text content */}
             <Grid item xs={12} md={6}>
               <Typography
-                variant="h2"
+                variant="h3"
                 sx={{
                   mb: { xs: 2, md: 2 },
                   background: "linear-gradient(45deg, #ffffff, #e0e7ff)",
@@ -133,12 +135,12 @@ export default function Hero() {
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   animation: "slideInLeft 1s ease-out",
-                  fontSize: { xs: "2rem", md: "3.75rem" },
+                  fontSize: { xs: "1.75rem", md: "3.25rem" },
                   fontWeight: { xs: 450, md: 400 },
-                  lineHeight: { xs: 1.2, md: 1.1 },
+                  lineHeight: { xs: 1.4, md: 1.4 },
                 }}
               >
-                Pioneering the Future of Technology
+                {t('hero.title')}
               </Typography>
 
               <Typography
@@ -150,7 +152,7 @@ export default function Hero() {
                   fontSize: { xs: "1.15rem", md: "1.75rem" },
                 }}
               >
-                Where Innovation Meets{" "}
+                {t('hero.subtitle')}{" "}
                 <span
                   style={{
                     display: "inline-block",
@@ -161,7 +163,7 @@ export default function Hero() {
                     animation: "exWave 1.8s ease-in-out infinite",
                   }}
                 >
-                  Excellence
+                  {t('hero.excellence')}
                 </span>
               </Typography>
 
@@ -174,7 +176,7 @@ export default function Hero() {
                   fontSize: { xs: "1.25rem", md: "1.5rem" },
                 }}
               >
-                Transforming businesses through cutting-edge technologies
+                {t('hero.description')}
               </Typography>
 
               <Box
@@ -213,7 +215,7 @@ export default function Hero() {
                     },
                   }}
                 >
-                  🚀 Start Your Innovation Journey
+                  {t('hero.startJourney')}
                 </Button>
 
                 <Button
@@ -235,7 +237,7 @@ export default function Hero() {
                     },
                   }}
                 >
-                  ✨ Explore Our Creations
+                  {t('hero.exploreCreations')}
                 </Button>
               </Box>
             </Grid>
@@ -259,7 +261,7 @@ export default function Hero() {
                     variant="h6"
                     sx={{ mb: { xs: 1, sm: 2, md: 3 }, color: "text.primary", fontWeight: 600 }}
                   >
-                    Quick Facts
+                    {t('hero.quickFacts')}
                   </Typography>
                   <Grid container spacing={{ xs: 0.5, sm: 2, md: 3 }} columnSpacing={{ xs: 0.5, sm: 2, md: 3 }}>
                     {STATS.map((stat) => (
@@ -282,10 +284,10 @@ export default function Hero() {
                             variant="h4"
                             sx={{ fontWeight: 700, color: stat.color, mb: 0.5, fontSize: { xs: "1.1rem", sm: "1.25rem", md: "1.75rem" } }}
                           >
-                            <CountUp value={stat.value}/>+
+                            <CountUp value={stat.value} />+
                           </Typography>
                           <Typography variant="body2" sx={{ color: "text.secondary", fontWeight: 500, fontSize: { xs: "0.75rem", sm: "0.75rem", md: "0.80rem" } }}>
-                            {stat.label} 
+                            {t(`hero.stats.${stat.label.toLowerCase().replace(' ', '')}`)}
                           </Typography>
                         </Box>
                       </Grid>
@@ -306,9 +308,9 @@ export default function Hero() {
         sx={{
           position: { xs: "relative", md: "absolute" },
           top: { xs: "auto", md: "70%" },
-          right: { xs: "auto", md: 0 },
+          right: { xs: "auto", md: 60 },
           transform: imageJump ? { xs: "translateY(0)", md: "translateY(-50%)" } : { xs: "translateY(0)", md: "translateY(-30%)" },
-          width: { xs: "100%", md: "40%" },
+          width: { xs: "100%", md: "35%" },
           maxWidth: { xs: "720px", md: "unset" },
           height: "auto",
           borderRadius: "16px",
@@ -331,7 +333,7 @@ export default function Hero() {
       <Box
         sx={{
           position: "absolute",
-          top: { xs: "69%", md: "34%" },
+          top: { xs: "69%", md: "36%" },
           right: { xs: "5%", md: "6%" },
           mt: { xs: 3, md: 0 },
           background: "rgba(255, 255, 255, 0.2)",
@@ -359,7 +361,7 @@ export default function Hero() {
             fontSize: { xs: "1rem", sm: "1.25rem", md: "1.50rem" },
           }}
         >
-          You think it, we ink it.
+          {t('hero.slogan')}
         </Typography>
         <Box
           sx={{

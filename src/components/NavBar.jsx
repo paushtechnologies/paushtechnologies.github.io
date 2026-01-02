@@ -18,19 +18,43 @@ import {
   Alert,
   Menu,
   MenuItem,
+  Select,
+  FormControl,
+  Divider,
 } from "@mui/material";
 import { Menu as MenuIcon, Close as CloseIcon } from "@mui/icons-material";
+import LanguageIcon from "@mui/icons-material/Language";
 import { COMPANY_NAME } from "../data/constants";
 import logo from "../assets/logo.png";
+import ContactWizardModal from "./ContactWizardModal";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function NavBar() {
+  const { language, setLanguage, t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [copyAlert, setCopyAlert] = useState(false);
   const [menuAnchorEl, setMenuAnchorEl] = useState(null);
+  const [wizardOpen, setWizardOpen] = useState(false);
+  const [langAnchorEl, setLangAnchorEl] = useState(null);
   const isMenuOpen = Boolean(menuAnchorEl);
+  const isLangMenuOpen = Boolean(langAnchorEl);
+
+  const languages = [
+    { code: 'en', name: 'English', nativeName: 'English' },
+    { code: 'hi', name: 'Hindi', nativeName: 'हिन्दी' },
+    { code: 'ta', name: 'Tamil', nativeName: 'தமிழ்' },
+    { code: 'kn', name: 'Kannada', nativeName: 'ಕನ್ನಡ' },
+    { code: 'ml', name: 'Malayalam', nativeName: 'മലയാളം' },
+    { code: 'te', name: 'Telugu', nativeName: 'తెలుగు' },
+    { code: 'or', name: 'Odia', nativeName: 'ଓଡ଼ିଆ' },
+    { code: 'mr', name: 'Marathi', nativeName: 'मराठी' },
+    { code: 'gu', name: 'Gujarati', nativeName: 'ગુજરાતી' },
+    { code: 'kok', name: 'Konkani', nativeName: 'कोंकणी' },
+    { code: 'lus', name: 'Mizo', nativeName: 'Mizo ṭawng' },
+  ];
 
   const copyPhoneNumber = () => {
-    navigator.clipboard.writeText("+91 8076864264");
+    navigator.clipboard.writeText("+91 9456644264");
     setCopyAlert(true);
   };
 
@@ -46,8 +70,12 @@ export default function NavBar() {
     const section = document.getElementById(id);
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
-      setMobileOpen(false);
     }
+  };
+
+  const handleMenuItemClick = (id) => {
+    setMenuAnchorEl(null); // close menu
+    handleScroll(id); // then scroll
   };
 
   return (
@@ -65,11 +93,9 @@ export default function NavBar() {
         {/* Centered floating pill */}
         <Box
           sx={{
-            maxWidth: 1200,
-            width: "100%",
             mx: "auto",
             width: "fit-content",
-            px: { xs: 1, md: 2 },
+            px: { xs: 0, md: 0 },
             borderRadius: "999px",
             transition: "all 0.5s ease",
             background: scrolled
@@ -84,13 +110,14 @@ export default function NavBar() {
           <Container
             maxWidth="xl"
             sx={{
-              px: { xs: 0, md: 2 },
+              px: { xs: 1, md: 0 },
               transition: "all 0.4s ease",
             }}
           >
             <Toolbar
               sx={{
                 justifyContent: "space-between",
+                alignItems: "center",
 
                 // ✅ RESPONSIVE HEIGHT
                 minHeight: {
@@ -110,7 +137,7 @@ export default function NavBar() {
                 onClick={() => handleScroll("home")}
                 sx={{
                   mt: scrolled ? 0 : 0.35,
-                  mr: { xs: scrolled ? 12 : 16, md: scrolled ? 24 : 32 },
+                  mr: { xs: scrolled ? 12 : 16, md: scrolled ? 16 : 32 },
                   ml: { xs: 0, md: 2 },
                   p: 0,
                   display: "flex",
@@ -131,7 +158,7 @@ export default function NavBar() {
                         sm: 30, // tablet
                         md: 30, // desktop
                       },
-                      width: "30px",
+                      width: { xs: "25px", md: "30px" },
                       transition: "all 0.3s ease",
                     }}
                   />
@@ -155,7 +182,7 @@ export default function NavBar() {
                           md: "1.25rem",
                         },
                         letterSpacing: {
-                          xs: 0.5,
+                          xs: 0.2,
                           md: 0.2,
                         },
                         opacity: scrolled ? 0 : 1,
@@ -174,12 +201,12 @@ export default function NavBar() {
                         fontWeight: 600,
                         color: "rgba(15,23,42,0.8)",
                         fontSize: {
-                          xs: "0.65rem",
+                          xs: "0.6rem",
                           sm: "0.70rem",
                           md: "0.75rem",
                         },
-                        lineHeight: 1,
-                        letterSpacing: {xs: 0.05, md: 0.1},
+                        lineHeight: { xs: 0.85, md: 1 },
+                        letterSpacing: { xs: 0.05, md: 0.1 },
                         opacity: scrolled ? 0 : 1,
                         transform: scrolled
                           ? "translateY(-8px)"
@@ -203,11 +230,11 @@ export default function NavBar() {
                 }}
               >
                 {[
-                  { label: "Home", id: "home" },
-                  { label: "Services", id: "services" },
-                  { label: "Pricing", id: "pricing" },
-                  { label: "About", id: "about" },
-                  { label: "Contact Us", id: "contact" },
+                  { label: t('nav.home'), id: "home" },
+                  { label: t('nav.services'), id: "services" },
+                  { label: t('nav.pricing'), id: "pricing" },
+                  { label: t('nav.about'), id: "about" },
+                  { label: t('nav.contact'), id: "contact" },
                 ].map((item, i) => (
                   <Button
                     key={i}
@@ -225,6 +252,39 @@ export default function NavBar() {
                 ))}
 
                 <Button
+                  variant="outlined"
+                  onClick={() => setWizardOpen(true)}
+                  sx={{
+                    borderColor: "#6366f1",
+                    color: "#6366f1",
+                    borderRadius: "25px",
+                    px: 2,
+                    py: 0,
+                    fontWeight: 700,
+                    textTransform: "capitalize",
+                    "&:hover": {
+                      borderColor: "#4f46e5",
+                      background: "rgba(99, 102, 241, 0.05)",
+                    }
+                  }}
+                >
+                  {t('nav.getQuote')}
+                </Button>
+
+                {/* Language Selector */}
+                <IconButton
+                  onClick={(e) => setLangAnchorEl(e.currentTarget)}
+                  sx={{
+                    color: "#6366f1",
+                    "&:hover": {
+                      background: "rgba(99, 102, 241, 0.05)",
+                    }
+                  }}
+                >
+                  <LanguageIcon />
+                </IconButton>
+
+                <Button
                   variant="contained"
                   onClick={copyPhoneNumber}
                   sx={{
@@ -232,21 +292,43 @@ export default function NavBar() {
                     borderRadius: "25px",
                     px: 2,
                     py: 0,
+                    color: "#fff",
                     fontWeight: 600,
+                    letterSpacing: 0.7,
                     whiteSpace: "nowrap",
+                    textTransform: "capitalize"
                   }}
                 >
-                  Call: +91 8076864264
+                  {t('nav.call')}
                 </Button>
               </Box>
 
-              {/* Mobile Menu Button */}
-              <IconButton
-                sx={{ display: { xs: "block", md: "none" } }}
-                onClick={(e) => setMenuAnchorEl(e.currentTarget)}
-              >
-                <MenuIcon />
-              </IconButton>
+              {/* Mobile Icons */}
+              <Box sx={{ display: { xs: "flex", md: "none" }, alignItems: "center", gap: 0.5 }}>
+                <IconButton
+                  onClick={(e) => setLangAnchorEl(e.currentTarget)}
+                  sx={{
+                    color: "#6366f1",
+                    height: 32,
+                    width: 32,
+                    p: 0.5,
+                  }}
+                >
+                  <LanguageIcon sx={{ fontSize: 20 }} />
+                </IconButton>
+                <IconButton
+                  sx={{
+                    alignItems: "center",
+                    justifyContent: "center",
+                    p: 0.5,
+                    height: 32,
+                    width: 32,
+                  }}
+                  onClick={(e) => setMenuAnchorEl(e.currentTarget)}
+                >
+                  <MenuIcon />
+                </IconButton>
+              </Box>
             </Toolbar>
           </Container>
         </Box>
@@ -277,18 +359,15 @@ export default function NavBar() {
           }}
         >
           {[
-            { label: "Home", id: "home" },
-            { label: "Services", id: "services" },
-            { label: "Pricing", id: "pricing" },
-            { label: "About", id: "about" },
-            { label: "Contact Us", id: "contact" },
+            { label: t('nav.home'), id: "home" },
+            { label: t('nav.services'), id: "services" },
+            { label: t('nav.pricing'), id: "pricing" },
+            { label: t('nav.about'), id: "about" },
+            { label: t('nav.contact'), id: "contact" },
           ].map((item) => (
             <MenuItem
               key={item.id}
-              onClick={() => {
-                handleScroll(item.id);
-                setMenuAnchorEl(null);
-              }}
+              onClick={() => handleMenuItemClick(item.id)}
               sx={{
                 fontWeight: 500,
                 borderRadius: "10px",
@@ -297,6 +376,55 @@ export default function NavBar() {
               }}
             >
               {item.label}
+            </MenuItem>
+          ))}
+        </Menu>
+
+        {/* Language Selector Menu */}
+        <Menu
+          anchorEl={langAnchorEl}
+          open={isLangMenuOpen}
+          onClose={() => setLangAnchorEl(null)}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "right",
+          }}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "right",
+          }}
+          sx={{
+            "& .MuiPaper-root": {
+              mt: 1,
+              minWidth: 180,
+              maxHeight: 400,
+              borderRadius: "16px",
+              background: "rgba(255,255,255,0.95)",
+              backdropFilter: "blur(10px)",
+              boxShadow: "0 12px 30px rgba(0,0,0,0.15)",
+            },
+          }}
+        >
+          {languages.map((lang) => (
+            <MenuItem
+              key={lang.code}
+              onClick={() => {
+                setLanguage(lang.code);
+                setLangAnchorEl(null);
+              }}
+              selected={language === lang.code}
+              sx={{
+                fontWeight: language === lang.code ? 700 : 500,
+                borderRadius: "10px",
+                mx: 1,
+                my: 0.5,
+                backgroundColor: language === lang.code ? "rgba(99, 102, 241, 0.1)" : "transparent",
+                "&:hover": {
+                  backgroundColor: language === lang.code ? "rgba(99, 102, 241, 0.15)" : "rgba(0, 0, 0, 0.04)",
+                },
+              }}
+            >
+              {lang.nativeName}
             </MenuItem>
           ))}
         </Menu>
@@ -318,9 +446,15 @@ export default function NavBar() {
             boxShadow: "0 4px 20px rgba(0,0,0,0.5)",
           }}
         >
-          Phone number copied!
+          {t('nav.phoneCopied')}
         </Alert>
       </Snackbar>
+
+      <ContactWizardModal
+        open={wizardOpen}
+        onClose={() => setWizardOpen(false)}
+        phoneNumber="+919456644264"
+      />
     </>
   );
 }

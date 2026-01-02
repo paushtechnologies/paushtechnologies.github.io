@@ -10,8 +10,10 @@ import {
   ListItem,
 } from "@mui/material";
 import { COMPANY_NAME } from "../data/constants";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function Footer() {
+  const { t } = useLanguage();
   const scrollToSection = (id) => {
     const section = document.querySelector(id);
     if (section) section.scrollIntoView({ behavior: "smooth" });
@@ -40,11 +42,12 @@ export default function Footer() {
         background: "linear-gradient(135deg, #1f2937 0%, #374151 100%)",
         color: "white",
         py: { xs: 4, md: 6 },
+        px: { xs: 2, md: 20 },
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
         {/* MAIN SPLIT: LEFT & RIGHT */}
-        <Grid container spacing={{ xs: 4, md: 8 }} alignItems="flex-start">
+        <Grid container spacing={{ xs: 4, md: 8 }} alignItems="flex-start" justifyContent="space-between">
           {/* ================= LEFT SECTION ================= */}
           <Grid item xs={12} md={5}>
             <Typography
@@ -88,8 +91,7 @@ export default function Footer() {
                 lineHeight: 1.6,
               }}
             >
-              We don't just build digital products — we build long-term
-              partnerships.
+              {t('footer.tagline')}
             </Typography>
 
             <Typography
@@ -120,7 +122,11 @@ export default function Footer() {
               }}
             >
               <Box
-                sx={{ cursor: "pointer" }}
+                sx={{
+                  cursor: "pointer",
+                  transition: "color 0.3s ease",
+                  "&:hover": { color: "#818cf8" }
+                }}
                 onClick={() => {
                   navigator.clipboard.writeText("+919456644264");
                   setMessage("Phone number copied");
@@ -132,7 +138,11 @@ export default function Footer() {
               </Box>
 
               <Box
-                sx={{ cursor: "pointer" }}
+                sx={{
+                  cursor: "pointer",
+                  transition: "color 0.3s ease",
+                  "&:hover": { color: "#818cf8" }
+                }}
                 onClick={() => {
                   navigator.clipboard.writeText("paushtechnologies@gmail.com");
                   setMessage("Email copied");
@@ -162,19 +172,28 @@ export default function Footer() {
                         whiteSpace: "nowrap",
                       }}
                     >
-                      🚀 Innovation Hub
+                      {t('footer.innovationHub')}
                     </Typography>
 
                     <List sx={{ p: 0 }}>
                       {[
-                        { label: "Home", id: "#home" },
-                        { label: "Services", id: "#services" },
-                        { label: "Pricing", id: "#pricing" },
-                        { label: "Contact Us", id: "#contact" },
+                        { label: t('nav.home'), id: "#home" },
+                        { label: t('nav.services'), id: "#services" },
+                        { label: t('nav.pricing'), id: "#pricing" },
+                        { label: t('nav.contact'), id: "#contact" },
                       ].map((link, index) => (
                         <ListItem
                           key={index}
-                          sx={{ p: 0, mb: 1, cursor: "pointer" }}
+                          sx={{
+                            p: 0,
+                            mb: 1,
+                            cursor: "pointer",
+                            transition: "all 0.3s ease",
+                            "&:hover": {
+                              color: "#818cf8",
+                              transform: "translateX(5px)"
+                            }
+                          }}
                           onClick={() => scrollToSection(link.id)}
                         >
                           {link.label}
@@ -194,17 +213,29 @@ export default function Footer() {
                         whiteSpace: "nowrap",
                       }}
                     >
-                      🔗 Resources
+                      {t('footer.resources')}
                     </Typography>
 
                     <List sx={{ p: 0 }}>
                       {[
-                        "Privacy Policy",
-                        "Terms of Service",
-                        "Innovation Blog",
-                        "Case Studies",
+                        t('footer.privacyPolicy'),
+                        t('footer.termsOfService'),
+                        t('footer.innovationBlog'),
+                        t('footer.caseStudies'),
                       ].map((item, i) => (
-                        <ListItem key={i} sx={{ p: 0, mb: 1 }}>
+                        <ListItem
+                          key={i}
+                          sx={{
+                            p: 0,
+                            mb: 1,
+                            cursor: "pointer",
+                            transition: "all 0.3s ease",
+                            "&:hover": {
+                              color: "#818cf8",
+                              transform: "translateX(5px)"
+                            }
+                          }}
+                        >
                           {item}
                         </ListItem>
                       ))}
@@ -216,12 +247,12 @@ export default function Footer() {
               {/* ---------- DOWN SECTION (Subscribe) ---------- */}
               <Grid item>
                 <Typography variant="h6" sx={{ mb: 2, fontWeight: 600 }}>
-                  📧 Stay Updated
+                  {t('footer.stayUpdated')}
                 </Typography>
 
                 <Box sx={{ display: "flex", gap: 1, maxWidth: 420 }}>
                   <TextField
-                    placeholder="Enter your email"
+                    placeholder={t('footer.enterEmail')}
                     size="small"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -238,6 +269,11 @@ export default function Footer() {
                     onClick={handleSubscribe}
                     sx={{
                       background: "linear-gradient(45deg, #6366f1, #ec4899)",
+                      transition: "all 0.3s ease",
+                      "&:hover": {
+                        transform: "scale(1.05)",
+                        boxShadow: "0 0 20px rgba(99, 102, 241, 0.4)",
+                      }
                     }}
                   >
                     🚀
@@ -267,7 +303,7 @@ export default function Footer() {
           }}
         >
           <Typography variant="body2" sx={{ opacity: 0.7 }}>
-            © 2024 {COMPANY_NAME}. All Rights Reserved.
+            {t('footer.copyright')}
           </Typography>
         </Box>
       </Container>
