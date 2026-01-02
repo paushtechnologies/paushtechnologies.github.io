@@ -191,6 +191,7 @@ export default function Hero() {
                   variant="contained"
                   size="large"
                   onClick={() => scrollToSection("#pricing")}
+                  aria-label="Start your digital journey"
                   sx={{
                     position: "relative",
                     overflow: "hidden",
@@ -222,6 +223,7 @@ export default function Hero() {
                   variant="outlined"
                   size="large"
                   onClick={() => scrollToSection("#ourprojects")}
+                  aria-label="Explore our creations"
                   sx={{
                     borderColor: "white",
                     color: "white",

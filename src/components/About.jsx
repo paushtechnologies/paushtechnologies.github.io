@@ -7,7 +7,7 @@ import { ScrollAnimation, fadeInLeft, fadeInRight } from "./ScrollAnimation";
 export default function AboutSection() {
   const { t } = useLanguage();
   return (
-    <Box sx={{ py: 8, background: "#f8fafc" }}>
+    <Box sx={{ py: { xs: 8, md: 12 }, background: "#f8fafc" }}>
       <Container maxWidth="lg">
         <Grid container spacing={{ xs: 2, md: 6 }} alignItems="center">
           <Grid item xs={12} md={6}>

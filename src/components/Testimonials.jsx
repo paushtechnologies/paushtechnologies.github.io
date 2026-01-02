@@ -17,7 +17,7 @@ export default function TestimonialsSection() {
   const items = Array.isArray(testimonials) ? testimonials : [];
 
   return (
-    <Box sx={{ py: 8, background: "white" }}>
+    <Box sx={{ py: { xs: 8, md: 12 }, background: "white" }}>
       <Container maxWidth="lg">
         <ScrollAnimation>
           <Box sx={{ textAlign: "center", mb: 6 }}>

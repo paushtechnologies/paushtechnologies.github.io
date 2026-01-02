@@ -93,14 +93,27 @@ export default function ProjectsCarousel() {
   const videoRefs = useRef([]);
   const [videoProgress, setVideoProgress] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [showMobileControls, setShowMobileControls] = useState(true);
+  const [showMobileControls, setShowMobileControls] = useState(false);
   const controlsTimeoutRef = useRef(null);
 
   const toggleMobileControls = () => {
-    setShowMobileControls(true);
-    if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
-    controlsTimeoutRef.current = setTimeout(() => setShowMobileControls(false), 3000);
+    if (showMobileControls && isPlaying) {
+      setShowMobileControls(false);
+      if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
+    } else {
+      setShowMobileControls(true);
+      if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
+      if (isPlaying) {
+        controlsTimeoutRef.current = setTimeout(() => setShowMobileControls(false), 3500);
+      }
+    }
   };
+
+  useEffect(() => {
+    return () => {
+      if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
+    };
+  }, []);
 
   useEffect(() => {
     const calc = () => {
@@ -196,6 +209,9 @@ export default function ProjectsCarousel() {
 
   useEffect(() => {
     const video = videoRefs.current[index];
+    setShowMobileControls(false); // Reset controls on index change
+    if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
+
     if (video) {
       video.currentTime = 0;
       setIsPlaying(true);
@@ -234,7 +250,7 @@ export default function ProjectsCarousel() {
     <Box
       component="section"
       sx={{
-        py: { xs: 4, md: 10 },
+        py: { xs: 8, md: 12 },
         backgroundColor: "#f8fafc",
         position: "relative",
         overflow: "hidden",
@@ -417,8 +433,8 @@ export default function ProjectsCarousel() {
                               alignItems: "center",
                               justifyContent: "center",
                               bgcolor: "rgba(0,0,0,0.4)",
-                              opacity: showMobileControls ? 1 : 0,
-                              visibility: showMobileControls ? "visible" : "hidden",
+                              opacity: (showMobileControls || !isPlaying) ? 1 : 0,
+                              visibility: (showMobileControls || !isPlaying) ? "visible" : "hidden",
                               transition: "all 0.3s ease",
                               zIndex: 16,
                               gap: 3
@@ -427,6 +443,7 @@ export default function ProjectsCarousel() {
                           >
                             <IconButton
                               onClick={(e) => { e.preventDefault(); e.stopPropagation(); const v = videoRefs.current[i]; if (v && i === index) { v.currentTime -= 10; toggleMobileControls(); } }}
+                              aria-label="replay 10 seconds"
                               sx={{ color: "white", bgcolor: "rgba(255,255,255,0.2)", p: 1.5 }}
                             >
                               <Replay10Icon sx={{ fontSize: "1.8rem" }} />
@@ -441,12 +458,14 @@ export default function ProjectsCarousel() {
                                   toggleMobileControls();
                                 }
                               }}
+                              aria-label={isPlaying ? "pause video" : "play video"}
                               sx={{ color: "white", bgcolor: "rgba(255,255,255,0.3)", p: 2.5 }}
                             >
                               {isPlaying ? <PauseIcon sx={{ fontSize: "2.5rem" }} /> : <PlayArrowIcon sx={{ fontSize: "2.5rem" }} />}
                             </IconButton>
                             <IconButton
                               onClick={(e) => { e.preventDefault(); e.stopPropagation(); const v = videoRefs.current[i]; if (v && i === index) { v.currentTime += 10; toggleMobileControls(); } }}
+                              aria-label="forward 10 seconds"
                               sx={{ color: "white", bgcolor: "rgba(255,255,255,0.2)", p: 1.5 }}
                             >
                               <Forward10Icon sx={{ fontSize: "1.8rem" }} />
@@ -476,6 +495,7 @@ export default function ProjectsCarousel() {
                               href={p.liveUrl}
                               target="_blank"
                               rel="noopener noreferrer"
+                              aria-label={`visit live site for ${p.title}`}
                               onMouseMove={(e) => {
                                 const rect = e.currentTarget.getBoundingClientRect();
                                 const x = (e.clientX - rect.left - rect.width / 2) * 0.4;
@@ -543,6 +563,7 @@ export default function ProjectsCarousel() {
                             <Box sx={{ display: "flex", gap: { xs: 1, md: 3 }, mt: "auto" }}>
                               <IconButton
                                 onClick={(e) => { e.preventDefault(); e.stopPropagation(); const v = videoRefs.current[i]; if (v && i === index) v.currentTime -= 10; }}
+                                aria-label="replay 10 seconds"
                                 sx={{
                                   color: "white",
                                   bgcolor: "rgba(255,255,255,0.1)",
@@ -561,6 +582,7 @@ export default function ProjectsCarousel() {
                                     else { v.play(); setIsPlaying(true); }
                                   }
                                 }}
+                                aria-label={isPlaying ? "pause video" : "play video"}
                                 sx={{
                                   color: "white",
                                   bgcolor: "rgba(255,255,255,0.2)",
@@ -572,6 +594,7 @@ export default function ProjectsCarousel() {
                               </IconButton>
                               <IconButton
                                 onClick={(e) => { e.preventDefault(); e.stopPropagation(); const v = videoRefs.current[i]; if (v && i === index) v.currentTime += 10; }}
+                                aria-label="forward 10 seconds"
                                 sx={{
                                   color: "white",
                                   bgcolor: "rgba(255,255,255,0.1)",
@@ -586,6 +609,7 @@ export default function ProjectsCarousel() {
                           <Box sx={{ position: "absolute", bottom: 0, left: 0, width: `${videoProgress}%`, height: "4px", bgcolor: "primary.main", zIndex: 25 }} />
                           <IconButton
                             onClick={(e) => { e.preventDefault(); e.stopPropagation(); setIsMuted(!isMuted); }}
+                            aria-label={isMuted ? "unmute video" : "mute video"}
                             sx={{ position: "absolute", bottom: 10, right: 10, bgcolor: "rgba(0,0,0,0.5)", color: "white", zIndex: 20, "&:hover": { bgcolor: "rgba(0,0,0,0.7)", transform: "scale(1.1)" }, transition: "all 0.2s ease" }}
                           >
                             {isMuted ? <VolumeOffIcon size="small" /> : <VolumeUpIcon size="small" />}
@@ -617,6 +641,7 @@ export default function ProjectsCarousel() {
                               href={p.liveUrl}
                               target="_blank"
                               rel="noopener noreferrer"
+                              aria-label={`visit live site for ${p.title}`}
                               onMouseMove={(e) => {
                                 const rect = e.currentTarget.getBoundingClientRect();
                                 const x = (e.clientX - rect.left - rect.width / 2) * 0.4;
@@ -708,6 +733,7 @@ export default function ProjectsCarousel() {
                             href={p.liveUrl}
                             target="_blank"
                             rel="noopener noreferrer"
+                            aria-label={`visit live site for ${p.title}`}
                             sx={{
                               color: "primary.main",
                               border: "1px solid",

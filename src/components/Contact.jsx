@@ -79,7 +79,7 @@ export default function ContactSection() {
 
   return (
     <Box sx={{
-      py: { xs: 4, md: 8 },
+      py: { xs: 8, md: 12 },
       background: "linear-gradient(135deg,#f9fafb,#eef2ff)"
     }}>
       <Container maxWidth="lg">

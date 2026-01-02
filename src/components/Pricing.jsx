@@ -29,7 +29,7 @@ export default function PricingSection() {
   return (
     <Box
       sx={{
-        py: { xs: 4, md: 8 },
+        py: { xs: 8, md: 12 },
         background: "white",
       }}
     >

@@ -274,6 +274,7 @@ export default function NavBar() {
                 {/* Language Selector */}
                 <IconButton
                   onClick={(e) => setLangAnchorEl(e.currentTarget)}
+                  aria-label="select language"
                   sx={{
                     color: "#6366f1",
                     "&:hover": {
@@ -307,6 +308,7 @@ export default function NavBar() {
               <Box sx={{ display: { xs: "flex", md: "none" }, alignItems: "center", gap: 0.5 }}>
                 <IconButton
                   onClick={(e) => setLangAnchorEl(e.currentTarget)}
+                  aria-label="select language"
                   sx={{
                     color: "#6366f1",
                     height: 32,
@@ -325,6 +327,7 @@ export default function NavBar() {
                     width: 32,
                   }}
                   onClick={(e) => setMenuAnchorEl(e.currentTarget)}
+                  aria-label="open navigation menu"
                 >
                   <MenuIcon />
                 </IconButton>
