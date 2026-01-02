@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 import AboutSection from "./components/About";
 import TestimonialsSection from "./components/Testimonials";
 import OurProjects from "./components/OurProjects";
+import FloatingContact from "./components/FloatingContact";
 
 const theme = createTheme({
   palette: {
@@ -57,6 +58,7 @@ export default function App() {
 
         <Footer />
       </div>
+      <FloatingContact />
     </ThemeProvider>
   );
 }

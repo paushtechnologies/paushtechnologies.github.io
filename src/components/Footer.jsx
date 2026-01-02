@@ -122,13 +122,13 @@ export default function Footer() {
               <Box
                 sx={{ cursor: "pointer" }}
                 onClick={() => {
-                  navigator.clipboard.writeText("+918076864264");
+                  navigator.clipboard.writeText("+919456644264");
                   setMessage("Phone number copied");
                   setSuccess(true);
                   setTimeout(() => setMessage(""), 3000);
                 }}
               >
-                📞 +91 8076864264
+                📞 +91 9456644264
               </Box>
 
               <Box
