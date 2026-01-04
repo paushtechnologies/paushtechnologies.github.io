@@ -25,7 +25,7 @@ export const SERVICES = [
   },
   {
     id: "mobile-innovation",
-    title: "Mobile Innovation",
+    title: "Mobile App Dev",
     description:
       "Create stunning mobile experiences with native and cross-platform apps that engage users and drive business results.",
     icon: MobileIcon,

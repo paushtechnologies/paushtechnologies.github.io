@@ -28,7 +28,7 @@ const translations = {
             aiAutomationDesc: 'Automate, optimize, and innovate with AI-driven systems that work intelligently around the clock.',
             blockchainTech: 'Blockchain Technology',
             blockchainTechDesc: 'Empower your ecosystem with decentralized apps, smart contracts, and blockchain integrations.',
-            mobileInnovation: 'Mobile Innovation',
+            mobileInnovation: 'Mobile App Dev',
             mobileInnovationDesc: 'Create stunning mobile experiences that delight users and boost engagement on every platform.',
             cyberSecurity: 'Cyber Security',
             cyberSecurityDesc: 'Protect your data and infrastructure with enterprise-grade cyber defense and monitoring solutions.',

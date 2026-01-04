@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://paushtechnologies.github.io/sitemap.xml

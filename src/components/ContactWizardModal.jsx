@@ -76,10 +76,22 @@ const ContactWizardModal = ({ open, onClose, phoneNumber }) => {
         const newErrors = {};
         if (step === 2) {
             if (!formData.name.trim()) newErrors.name = t('wizard.errors.name');
-            if (!formData.phone.trim()) {
-                newErrors.phone = t('wizard.errors.phone');
-            } else if (!/^\+?[\d\s-]{10,15}$/.test(formData.phone)) {
+
+
+            const hasPhone = formData.phone && formData.phone.trim().length > 0;
+            const hasEmail = formData.email && formData.email.trim().length > 0;
+
+            if (!hasPhone && !hasEmail) {
+                newErrors.phone = t('wizard.errors.phoneOrEmail');
+                newErrors.email = t('wizard.errors.phoneOrEmail');
+            }
+
+            if (hasPhone && !/^\+?[\d\s-]{10,15}$/.test(formData.phone)) {
                 newErrors.phone = t('wizard.errors.validPhone');
+            }
+
+            if (hasEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+                newErrors.email = t('wizard.errors.validEmail');
             }
         }
         setErrors(newErrors);
@@ -300,7 +312,7 @@ User Summary: I am looking to build a ${getServiceLabel(formData.service)} for $
                                             fullWidth
                                             label={t('wizard.fullName')}
                                             error={!!errors.name}
-                                            helperText={errors.name && t('wizard.nameRequired')}
+                                            helperText={errors.name}
                                             value={formData.name}
                                             onChange={(e) => updateForm("name", e.target.value)}
                                             sx={{ "& .MuiOutlinedInput-root": { borderRadius: 3 } }}
@@ -309,20 +321,21 @@ User Summary: I am looking to build a ${getServiceLabel(formData.service)} for $
                                             fullWidth
                                             label={t('wizard.whatsappPhone')}
                                             error={!!errors.phone}
-                                            helperText={errors.phone && t('wizard.phoneRequired')}
+                                            helperText={errors.phone}
                                             value={formData.phone}
                                             onChange={(e) => updateForm("phone", e.target.value)}
                                             sx={{ "& .MuiOutlinedInput-root": { borderRadius: 3 } }}
                                         />
                                         <TextField
                                             fullWidth
-                                            label={t('wizard.emailOptional')}
+                                            label={t('wizard.email')}
+                                            error={!!errors.email}
+                                            helperText={errors.email}
                                             value={formData.email}
                                             onChange={(e) => updateForm("email", e.target.value)}
                                             sx={{ "& .MuiOutlinedInput-root": { borderRadius: 3 } }}
                                         />
                                         <Box sx={{ display: "flex", gap: 2 }}>
-                                            <Button fullWidth onClick={handleSkip} sx={{ borderRadius: 3, fontWeight: 600, color: "#64748b", textTransform: "none" }}>{t('wizard.skip')}</Button>
                                             <Button fullWidth variant="contained" onClick={handleNext} sx={{ borderRadius: 3, py: 1.5, fontWeight: 700, background: "linear-gradient(45deg, #6366f1, #4f46e5)", textTransform: "none" }}>{t('wizard.next')}</Button>
                                         </Box>
                                     </Box>

@@ -15,7 +15,7 @@ import homepage2 from "../assets/homepage2.png";
 import { useLanguage } from "../context/LanguageContext";
 
 /* ================= COUNT UP COMPONENT ================= */
-const CountUp = ({ value, duration = 3000 }) => {
+const CountUp = ({ value, duration = 7000 }) => {
   const [displayValue, setDisplayValue] = useState(0);
   const hasAnimated = useRef(false);
 
@@ -335,7 +335,7 @@ export default function Hero() {
       <Box
         sx={{
           position: "absolute",
-          top: { xs: "69%", md: "36%" },
+          top: { xs: "69%", md: "37%" },
           right: { xs: "5%", md: "6%" },
           mt: { xs: 3, md: 0 },
           background: "rgba(255, 255, 255, 0.2)",
