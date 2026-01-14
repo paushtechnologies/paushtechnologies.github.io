@@ -1,7 +1,7 @@
 export const SERVICES = [
   {
     id: "digital-transformation",
-    title: "Digital Transformation",
+    title: "Website Development",
     description:
       "Revolutionize your business with cutting-edge digital solutions. We transform traditional processes into modern, efficient systems that drive growth.",
     icon: WebIcon,

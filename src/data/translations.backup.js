@@ -20,7 +20,7 @@ const translations = {
         services: {
             title: 'Our Services',
             subtitle: 'We build world-class web, mobile, and cloud solutions that empower brands to achieve more — smartly, beautifully, and efficiently.',
-            digitalTransformation: 'Digital Transformation',
+            digitalTransformation: 'Website Development',
             digitalTransformationDesc: 'Revolutionize your business with next-gen digital solutions transforming traditional workflows into modern, scalable systems.',
             cloudArchitecture: 'Cloud Architecture',
             cloudArchitectureDesc: 'Design and deploy secure, scalable, and high-performance cloud solutions on AWS, Azure, and GCP.',
