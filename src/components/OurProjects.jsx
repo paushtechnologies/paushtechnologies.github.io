@@ -16,9 +16,9 @@ import Replay10Icon from "@mui/icons-material/Replay10";
 import Forward10Icon from "@mui/icons-material/Forward10";
 import { ScrollAnimation } from "./ScrollAnimation";
 import { useLanguage } from "../context/LanguageContext";
-import dashboard from "../assets/OurProjects/Alpha/dashboard.png";
+// import dashboard from "../assets/OurProjects/Alpha/dashboard.png";
 import mindmart1img from "../assets/OurProjects/mindmart1.png";
-import ledger from "../assets/OurProjects/Alpha/ledger.png";
+// import ledger from "../assets/OurProjects/Alpha/ledger.png";
 import malicious2img from "../assets/OurProjects/MaliciousURL/2.png";
 import malicious3img from "../assets/OurProjects/MaliciousURL/3.png";
 import youtube1img from "../assets/OurProjects/YoutubeContent/1.png";
@@ -34,16 +34,16 @@ const PROJECTS = [
     category: "Finance",
     tech: ["React", "Django", "AWS", "Figma"],
     impact: "Developed a full-stack fintech platform for a prominent fintech influencer, supporting high user traffic, secure data handling, and smooth digital experiences for their community.",
-    img: dashboard,
-    youtubeUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    // img: dashboard,
+    youtubeUrl: "https://www.youtube.com/embed/p8RO3Vpk1qg",
     liveUrl: "https://app.alphacapitalclub.in/",
   },
   {
     title: "E-Commerce Website",
     category: "E-Commerce",
     tech: ["React", "MUI", "Figma"],
-    impact: "Designed and developed a custom order-based website for a bulk-supply business, where users can browse books, add items to cart, and submit orders without traditional payment gateways.Orders are automatically captured in Google Sheets for the admin, enabling simple and efficient order management aligned with their bulk-focused workflow. The solution was intentionally built to avoid per-transaction commissions, while still providing a smooth checkout experience — including auto-filled payment amounts via UPI QR scanning",
-    youtubeUrl: "https://www.youtube.com/embed/oHg5SJYRHA0",
+    impact: "Designed and developed a custom order-based website for a bulk-supply business, where users can browse books, add items to cart, and submit orders without traditional payment gateways.Orders are automatically captured in Excel Sheets for the admin, enabling simple and efficient order management aligned with their bulk-focused workflow. The solution was intentionally built to avoid per-transaction commissions, while still providing a smooth checkout experience — including auto-filled payment amounts via UPI QR scanning",
+    youtubeUrl: "https://www.youtube.com/embed/UEr78VSefjs",
     liveUrl: "https://jagritiprakashan.com/",
   },
   {
@@ -89,6 +89,7 @@ export default function ProjectsCarousel() {
   const [isPlaying, setIsPlaying] = useState(true);
   const autoRef = useRef(null);
   const videoRefs = useRef([]);
+  const youtubePlayers = useRef({});
   const [videoProgress, setVideoProgress] = useState(0);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [tilt, setTilt] = useState({ x: 0, y: 0, id: null });
@@ -111,6 +112,45 @@ export default function ProjectsCarousel() {
   useEffect(() => {
     return () => {
       if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
+    };
+  }, []);
+
+  const handleNextRef = useRef(null);
+
+
+  // Initialize YouTube API
+  useEffect(() => {
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    window.onYouTubeIframeAPIReady = () => {
+      PROJECTS.forEach((p, i) => {
+        if (p.youtubeUrl) {
+          const playerId = `youtube-player-${i}`;
+          // Small delay to ensure DOM is ready
+          setTimeout(() => {
+            if (document.getElementById(playerId)) {
+              youtubePlayers.current[i] = new window.YT.Player(playerId, {
+                events: {
+                  'onStateChange': (event) => {
+                    if (event.data === window.YT.PlayerState.ENDED) {
+                      if (handleNextRef.current) {
+                        handleNextRef.current();
+                      }
+                    }
+                  }
+                }
+              });
+            }
+          }, 500);
+        }
+      });
+    };
+
+    return () => {
+      // Clean up players if needed
     };
   }, []);
 
@@ -245,6 +285,10 @@ export default function ProjectsCarousel() {
     if (autoRef.current) clearInterval(autoRef.current);
     centerItem(next);
   };
+
+  useEffect(() => {
+    handleNextRef.current = handleNext;
+  });
 
 
   return (
@@ -449,7 +493,9 @@ export default function ProjectsCarousel() {
                           }}>
                             <Box
                               component="iframe"
-                              src={`${p.youtubeUrl}?rel=0&modestbranding=1&controls=1&playsinline=1&autoplay=${dist === 0 ? 1 : 0}&mute=1&enablejsapi=1&origin=${window.location.origin}`}
+                              id={`youtube-player-${i}`}
+                              className="youtube-player"
+                              src={`${p.youtubeUrl}?enablejsapi=1&rel=0&modestbranding=1&controls=1&playsinline=1&autoplay=${dist === 0 ? 1 : 0}&mute=1&origin=${window.location.origin}`}
                               title={p.title}
                               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                               allowFullScreen
