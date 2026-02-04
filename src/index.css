@@ -577,7 +577,7 @@ html {
 @media (max-width: 768px) {
   /* reduce root padding to avoid horizontal overflow on phones */
   #root {
-    padding: 1rem;
+    padding: 0;
   }
 
   /* ensure images are fluid and don't overflow their containers */

@@ -116,7 +116,7 @@ export default function ServicesSection() {
         <StaggerContainer>
           <Grid
             container
-            spacing={{ xs: 1.5, sm: 2, md: 4 }}
+            spacing={{ xs: 1, sm: 2, md: 4 }}
             alignItems="stretch"
             justifyContent="center"
           >
@@ -125,7 +125,7 @@ export default function ServicesSection() {
               const isCardActive = activeCard === service.id;
 
               return (
-                <Grid item xs={6} sm={6} md={4} lg={3} key={service.id || index}>
+                <Grid item xs={6} sm={6} md={4} lg={3} key={service.id || index} sx={{ minWidth: 0 }}>
                   <StaggerItem>
                     <Card
                       onClick={() => setActiveCard(activeCard === service.id ? null : service.id)}
@@ -137,7 +137,7 @@ export default function ServicesSection() {
                         justifyContent: "center",
                         alignItems: "center",
                         position: "relative",
-                        height: { xs: 190, sm: 220, md: 300 },
+                        height: { xs: 150, sm: 220, md: 300 },
                         borderRadius: { xs: 3, md: 4 },
                         overflow: "hidden",
                         boxSizing: "border-box",
@@ -192,7 +192,7 @@ export default function ServicesSection() {
                           alignItems: "center",
                           justifyContent: "center",
                           textAlign: "center",
-                          p: { xs: 2, md: 3 },
+                          p: { xs: 1, md: 3 },
                           transition: "all 0.4s ease",
                         }}
                       >
@@ -200,8 +200,8 @@ export default function ServicesSection() {
                         <Box
                           className="icon-box"
                           sx={{
-                            width: { xs: 52, md: 76 },
-                            height: { xs: 52, md: 76 },
+                            width: { xs: 40, md: 76 },
+                            height: { xs: 40, md: 76 },
                             borderRadius: "50%",
                             background: `linear-gradient(135deg, ${service.color}, ${service.color}90)`,
                             display: "flex",
@@ -212,7 +212,7 @@ export default function ServicesSection() {
                             transition: "all 0.4s ease",
                           }}
                         >
-                          <Icon sx={{ fontSize: { xs: 26, md: 36 } }} />
+                          <Icon sx={{ fontSize: { xs: 20, md: 36 } }} />
                         </Box>
 
                         {/* Title */}
@@ -227,6 +227,13 @@ export default function ServicesSection() {
                               xs: "0.85rem",
                               md: "1.15rem",
                             },
+                            maxWidth: { xs: "100px", md: "100%" },
+                            mx: "auto",
+                            display: "block",
+                            whiteSpace: "normal",
+                            overflowWrap: "anywhere",
+                            wordBreak: "normal",
+                            lineHeight: 1.2,
                           }}
                         >
                           {t(service.titleKey)}
