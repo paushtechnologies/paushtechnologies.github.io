@@ -116,7 +116,7 @@ export default function ServicesSection() {
         <StaggerContainer>
           <Grid
             container
-            spacing={{ xs: 1, sm: 2, md: 4 }}
+            spacing={{ xs: 2.5, sm: 2, md: 4 }}
             alignItems="stretch"
             justifyContent="center"
           >
@@ -137,15 +137,15 @@ export default function ServicesSection() {
                         justifyContent: "center",
                         alignItems: "center",
                         position: "relative",
-                        height: { xs: 150, sm: 220, md: 300 },
-                        borderRadius: { xs: 3, md: 4 },
+                        height: { xs: 160, sm: 220, md: 300 },
+                        borderRadius: { xs: 5, md: 4 },
                         overflow: "hidden",
                         boxSizing: "border-box",
                         cursor: "pointer",
                         background: `${service.color}10`,
-                        color: "#111",
-                        border: `1px solid ${service.color}20`,
-                        boxShadow: "0 8px 20px rgba(0,0,0,0.05)",
+                        color: "#1e293b",
+                        border: `1px solid ${service.color}15`,
+                        boxShadow: "0 10px 25px rgba(0,0,0,0.04)",
                         transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
                         userSelect: "none",
                         WebkitUserSelect: "none",
@@ -192,7 +192,7 @@ export default function ServicesSection() {
                           alignItems: "center",
                           justifyContent: "center",
                           textAlign: "center",
-                          p: { xs: 1, md: 3 },
+                          p: { xs: 1, md: 4 },
                           transition: "all 0.4s ease",
                         }}
                       >
@@ -224,19 +224,29 @@ export default function ServicesSection() {
                             mb: 1,
                             transition: "all 0.4s ease",
                             fontSize: {
-                              xs: "0.85rem",
-                              md: "1.15rem",
+                              xs: "0.8rem",
+                              md: "1.1rem",
                             },
-                            maxWidth: { xs: "100px", md: "100%" },
+                            maxWidth: { xs: "120px", md: "100%" },
                             mx: "auto",
                             display: "block",
                             whiteSpace: "normal",
-                            overflowWrap: "anywhere",
+                            overflowWrap: "normal",
                             wordBreak: "normal",
-                            lineHeight: 1.2,
+                            lineHeight: { xs: 1.1, md: 1.3 },
+                            letterSpacing: "-0.01em",
                           }}
                         >
-                          {t(service.titleKey)}
+                          {service.id === "mobile-innovation" ? (
+                            <>
+                              Mobile App Development
+                              <Box component="span" sx={{ display: { xs: "inline", md: "block" } }}>
+                                (iOS & Android)
+                              </Box>
+                            </>
+                          ) : (
+                            t(service.titleKey)
+                          )}
                         </Typography>
 
                         {/* Overlay description */}
