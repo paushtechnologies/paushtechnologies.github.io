@@ -128,13 +128,13 @@ export default function Footer() {
                   "&:hover": { color: "#818cf8" }
                 }}
                 onClick={() => {
-                  navigator.clipboard.writeText("+919456644264");
+                  navigator.clipboard.writeText("+919560211179");
                   setMessage("Phone number copied");
                   setSuccess(true);
                   setTimeout(() => setMessage(""), 3000);
                 }}
               >
-                📞 +91 9456644264
+                📞 +91 9560211179
               </Box>
 
               <Box

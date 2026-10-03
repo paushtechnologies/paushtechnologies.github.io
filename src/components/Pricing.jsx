@@ -175,7 +175,7 @@ export default function PricingSection() {
                 <ContactWizardModal
                     open={wizardOpen}
                     onClose={() => setWizardOpen(false)}
-                    phoneNumber="+919456644264"
+                    phoneNumber="+919560211179"
                 />
             </Container>
         </Box>

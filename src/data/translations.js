@@ -7,7 +7,7 @@ const translations = {
             about: 'About',
             contact: 'Contact Us',
             getQuote: 'Get Quote',
-            call: 'Call: 9456644264',
+            call: 'Call: 9560211179',
             phoneCopied: 'Phone number copied!',
             selectLanguage: 'Change Language'
         },
@@ -241,7 +241,7 @@ Best regards,`
             about: 'हमारे बारे में',
             contact: 'संपर्क करें',
             getQuote: 'अनुमान प्राप्त करें',
-            call: 'कॉल करें: 9456644264',
+            call: 'कॉल करें: 9560211179',
             phoneCopied: 'फ़ोन नंबर कॉपी किया गया!',
             selectLanguage: 'भाषा बदलें'
         },
@@ -476,7 +476,7 @@ Best regards,`
             about: 'எங்களை பற்றி',
             contact: 'தொடர்பு கொள்ளுங்கள்',
             getQuote: 'மேற்கோள் பெறுக',
-            call: 'அழைக்கவும்: 9456644264'
+            call: 'அழைக்கவும்: 9560211179'
         },
         hero: {
             title: 'தொழில்நுட்பத்தின் எதிர்காலத்தை உருவாக்குதல்',
@@ -582,7 +582,7 @@ Best regards,`
             about: 'ನಮ್ಮ ಬಗ್ಗೆ',
             contact: 'ಸಂಪರ್ಕಿಸಿ',
             getQuote: 'ಉಲ್ಲೇಖ ಪಡೆಯಿರಿ',
-            call: 'ಕರೆ ಮಾಡಿ: 9456644264'
+            call: 'ಕರೆ ಮಾಡಿ: 9560211179'
         },
         hero: {
             title: 'ತಂತ್ರಜ್ಞಾನದ ಭವಿಷ್ಯವನ್ನು ನಿರ್ಮಿಸುವುದು',
@@ -687,7 +687,7 @@ Best regards,`
             about: 'ഞങ്ങളെക്കുറിച്ച്',
             contact: 'ബന്ധപ്പെടുക',
             getQuote: 'ഉദ്ധരണി നേടുക',
-            call: 'വിളിക്കുക: 9456644264'
+            call: 'വിളിക്കുക: 9560211179'
         },
         hero: {
             title: 'സാങ്കേതികവിദ്യയുടെ ഭാവി നിർമ്മിക്കുന്നു',
@@ -760,7 +760,7 @@ Best regards,`
             about: 'మా గురించి',
             contact: 'సంప్రదించండి',
             getQuote: 'కోట్ పొందండి',
-            call: 'కాల్ చేయండి: 9456644264'
+            call: 'కాల్ చేయండి: 9560211179'
         },
         hero: {
             title: 'సాంకేతికత యొక్క భవిష్యత్తును నిర్మించడం',
@@ -833,7 +833,7 @@ Best regards,`
             about: 'ଆମ ବିଷୟରେ',
             contact: 'ଯୋଗାଯୋଗ କରନ୍ତୁ',
             getQuote: 'କୋଟ୍ ପାଆନ୍ତୁ',
-            call: 'କଲ୍ କରନ୍ତୁ: 9456644264'
+            call: 'କଲ୍ କରନ୍ତୁ: 9560211179'
         },
         hero: {
             title: 'ପ୍ରଯୁକ୍ତିବିଦ୍ୟାର ଭବିଷ୍ୟତ ନିର୍ମାଣ',
@@ -907,7 +907,7 @@ Best regards,`
             about: 'आमच्याबद्दल',
             contact: 'संपर्क करा',
             getQuote: 'कोटेशन मिळवा',
-            call: 'कॉल करा: 9456644264'
+            call: 'कॉल करा: 9560211179'
         },
         hero: {
             title: 'तंत्रज्ञानाच्या भविष्याची निर्मिती',
@@ -980,7 +980,7 @@ Best regards,`
             about: 'અમારા વિશે',
             contact: 'સંપર્ક કરો',
             getQuote: 'કોટેશન મેળવો',
-            call: 'કૉલ કરો: 9456644264'
+            call: 'કૉલ કરો: 9560211179'
         },
         hero: {
             title: 'ટેકનોલોજીના ભવિષ્યનું નિર્માણ',
@@ -1053,7 +1053,7 @@ Best regards,`
             about: 'आमच्या विशीं',
             contact: 'संपर्क करा',
             getQuote: 'कोटेशन मेळोवचें',
-            call: 'कॉल करा: 9456644264'
+            call: 'कॉल करा: 9560211179'
         },
         hero: {
             title: 'तंत्रज्ञानाच्या भविष्याची निर्मिती',
@@ -1126,7 +1126,7 @@ Best regards,`
             about: 'Kan chungchang',
             contact: 'Biak la',
             getQuote: 'Quote la rawh',
-            call: 'Call rawh: 9456644264'
+            call: 'Call rawh: 9560211179'
         },
         hero: {
             title: 'Technology hmalam hun rei siam mek',

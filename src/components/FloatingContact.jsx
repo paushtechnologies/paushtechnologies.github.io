@@ -37,7 +37,7 @@ const FloatingContact = () => {
         return () => window.removeEventListener("scroll", handleScroll);
     }, [isMobile]);
 
-    const phoneNumber = "+919456644264";
+    const phoneNumber = "+919560211179";
     const quickWhatsappMessage = encodeURIComponent(t('floating.whatsappMsg'));
     const quickWhatsappUrl = `https://wa.me/${phoneNumber.replace("+", "")}?text=${quickWhatsappMessage}`;
     const callUrl = `tel:${phoneNumber}`;

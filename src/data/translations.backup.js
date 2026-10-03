@@ -7,7 +7,7 @@ const translations = {
             about: 'About',
             contact: 'Contact Us',
             getQuote: 'Get Quote',
-            call: 'Call: 9456644264'
+            call: 'Call: 9560211179'
         },
         hero: {
             title: 'Pioneering Digital Solutions for Businesses',
@@ -80,7 +80,7 @@ Best regards,`
             about: 'हमारे बारे में',
             contact: 'संपर्क करें',
             getQuote: 'मूल्य जानें',
-            call: 'कॉल करें: 9456644264'
+            call: 'कॉल करें: 9560211179'
         },
         hero: {
             title: 'हम वेबसाइट्स बनाते हैं जो आपके ब्रांड को अलग बनाती हैं',
@@ -153,7 +153,7 @@ Best regards,`
             about: 'எங்களை பற்றி',
             contact: 'தொடர்பு கொள்ளுங்கள்',
             getQuote: 'மேற்கோள் பெறுக',
-            call: 'அழைக்கவும்: 9456644264'
+            call: 'அழைக்கவும்: 9560211179'
         },
         hero: {
             title: 'தொழில்நுட்பத்தின் எதிர்காலத்தை உருவாக்குதல்',

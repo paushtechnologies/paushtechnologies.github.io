@@ -54,7 +54,7 @@ export default function NavBar() {
   ];
 
   const copyPhoneNumber = () => {
-    navigator.clipboard.writeText("+91 9456644264");
+    navigator.clipboard.writeText("+91 9560211179");
     setCopyAlert(true);
   };
 
@@ -456,7 +456,7 @@ export default function NavBar() {
       <ContactWizardModal
         open={wizardOpen}
         onClose={() => setWizardOpen(false)}
-        phoneNumber="+919456644264"
+        phoneNumber="+919560211179"
       />
     </>
   );
